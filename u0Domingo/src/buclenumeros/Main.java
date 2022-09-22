@@ -36,9 +36,6 @@ public class Main {
 				contador++;
 			}
 			
-			// Cerramos Scanner
-			teclado.close();
-			
 		} while(salir);
 		
 		// Si esta correcto, analizamos
@@ -51,6 +48,9 @@ public class Main {
 		} else {
 			System.out.println("No se han introducido valores");
 		}
+		
+		// Cerramos Scanner
+		teclado.close();
 	}
 
 }
