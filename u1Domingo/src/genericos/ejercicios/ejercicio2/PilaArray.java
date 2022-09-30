@@ -17,7 +17,7 @@ public abstract class PilaArray<T> implements IPila<T>{
 	@Override
 	public boolean estaVacia() {
 		// TODO Auto-generated method stub
-		return false;
+		return contador == 0;
 	}
 	
 	@Override
@@ -34,18 +34,16 @@ public abstract class PilaArray<T> implements IPila<T>{
 	
 	@Override
 	public T primero() {
-		// TODO Auto-generated method stub
+		if (contador > 0) {
+			return array[contador-1];
+		} 
 		return null;
 	}
 	
 	@Override
 	public void aniadir(T t) {
-		// TODO Auto-generated method stub
-		
+		array = Arrays.copyOf(array, contador+1);
+		array[contador++] = t;	
 	}
-	
-	
-	
-	
 
 }

@@ -5,16 +5,20 @@ public interface IPila<T> {
 	public boolean estaVacia();
 	
 	/**
-	 * Devuelve el primer elemento
+	 * Devuelve y elimina el primer elemento
 	 * 
 	 * @return primer elemento
 	 */
 	
 	public T extraer();
 	
+	/**
+	 * Devuelve el primer elemento
+	 * 
+	 * @return primer elemento
+	 */
+	
 	public T primero();
 	
 	public void aniadir(T t);
-	
-	public String toString();
 }
