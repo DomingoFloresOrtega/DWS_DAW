@@ -1,8 +1,8 @@
 package genericos.ejercicios.ejercicio7;
 
 public interface Operable<E> {
-	public void sumar(E o);
-	public void restar(E o);
-	public void multiplicar(E o);
-	public void dividir(E o);
+	public E sumar(E o);
+	public E restar(E o);
+	public E multiplicar(E o);
+	public E dividir(E o);
 }
