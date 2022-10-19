@@ -1,6 +1,10 @@
 package anotaciones.ejercicios.ejercicio1;
 
-public @interface Empleado {
+import java.lang.annotation.*;
+
+@Repeatable(Empleados.class)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface EmpleadoAnotacion {
 	
 	String nombre();
 	String apellidos();
