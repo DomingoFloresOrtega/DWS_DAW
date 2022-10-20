@@ -1,4 +1,4 @@
-package lambdas.teoria;
+package lambdas.teoria.calculadora;
 
 public class PruebaFuncional {
 	
