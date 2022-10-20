@@ -1,6 +1,10 @@
-package lambdas.teoria;
+package lambdas.teoria.platos;
+
+import java.util.List;
 
 public class Ejemplos {
+	
+	
 
 	public static void ejemplo3() {
 
@@ -35,6 +39,16 @@ public class Ejemplos {
 				.collect(toList());
 //En filteredMenu tendremos solo: seasonal fruit, prawns
 
+	}
+	
+	public static void ejemplo5() {
+		List<String> dishNames = menu.stream() 
+                .map(Dish::getName)  //Aplica a cada elemento del flujo una función, en este caso, Dish::getName
+                // Mapear se puede interpretar por transformar, el elemento se mapea con el resultado de la función (se transforma)
+                .collect(toList());
+
+		dishNames.forEach(t -> System.out.println(t));
+		dishNames.forEach(System.out::println);
 	}
 
 }
