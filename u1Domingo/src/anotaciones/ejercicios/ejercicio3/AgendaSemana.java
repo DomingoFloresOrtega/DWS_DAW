@@ -25,14 +25,11 @@ public class AgendaSemana {
 	public void aniadirTarea(Tarea t) {
 		this.agenda.add(t);
 	}
-	
-	@Override
-	public String toString() {
+
+	public void mostrarTareas() {
 		for (Tarea a : agenda) {
 			System.out.println("Nombre: " + a.getTituloTarea());
 		}
-		
-		return "";
 	}
 	
 	public static AgendaSemana cargadorContexto() {
@@ -49,6 +46,8 @@ public class AgendaSemana {
 			tareas.setHoraSemana(tarea.horaSemana());
 			ag.aniadirTarea(tareas);
 		}
+		
+		
 		
 		return ag;
 	}
