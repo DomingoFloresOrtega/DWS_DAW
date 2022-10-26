@@ -1,6 +1,11 @@
 package lambdas.teoria.platos;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class Ejemplos {
 	
@@ -50,5 +55,66 @@ public class Ejemplos {
 		dishNames.forEach(t -> System.out.println(t));
 		dishNames.forEach(System.out::println);
 	}
+	
+	public static void ejemplo6(List<Dish> menu) {
+		
+		String[] arrayOfWords = {"Goodbye", "World"};
+		Stream<String> streamOfWords = Arrays.stream(arrayOfWords);
+		
+		String[] letras = "Goodbye".split("");
+		
+		List<String> uniqueCharacters = streamOfWords 
+                .map(word -> word.split("")) 
+                //.flatMap(Arrays::stream) 
+                .flatMap(t -> Arrays.stream(t))
+                .distinct() 
+                .collect(toList());
+		
+		Set<String> items = new HashSet<>();
+		List<String> dupliqueCharacters = Arrays.stream(arrayOfWords).map(word -> word.split(""))
+				.flatMap(Arrays::stream)
+				.filter(l -> !items.add(l)).collect(toList());
+	}
+	
+	public static void ejemplo7(List<Dish> menu) {
+		Optional<Dish> dish = menu.stream() 
+                .filter(d -> d.getCalories()<10) 
+                .findAny(); //Devuelve alguno, de tipo Optional<T>
+		
+		dish.ifPresent(d -> System.out.println(d));
+		
+		System.out.println(dish.orElse(new Dish(null, false, 0, null)));
+		
+		if (dish != null) {
+			
+		}
 
+	}
+	
+	public static void ejemplo8(List<Dish> menu) {
+		List<Integer> someNumbers = Arrays.asList(1, 2, 3, 4, 5);
+		
+		int sum = someNumbers.stream()
+				.peek(t -> System.out.println(t) )
+                .reduce(0, (a, b) -> a + b);
+		
+		System.out.println(sum);
+		
+		int totalCalorias = menu.stream().map(Dish::getCalorias)
+			.reduce(0,Integer::sum);
+		
+		System.out.println(totalCalorias);
+		
+		Optional<Integer> sum1 = someNumbers.stream()
+                .reduce((a, b) -> (a + b));
+
+
+
+	}
+	
+	public static void ejemploFrase() {
+		String str = "hola mundo!";
+		
+		Arrays.stream(str.split("")).filter(t -> !"".equals(t));
+	}
 }
