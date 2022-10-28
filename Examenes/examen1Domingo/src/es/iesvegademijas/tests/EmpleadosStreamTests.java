@@ -259,7 +259,6 @@ class EmpleadosStreamTests {
 			List<Departamento> listDep = depHome.findAll();
 			
 			var lista = listDep.stream()
-									//.reduce(maxBy(Departamento::getPresupuesto))
 									.map(d -> d.getNombre() + " " + d.getPresupuesto());
 									
 			
@@ -484,7 +483,7 @@ class EmpleadosStreamTests {
 	
 			List<Departamento> listDep = depHome.findAll();
 			
-			//
+			var lista = listDep.stream();
 			
 			listDep.forEach(System.out::println);
 		
@@ -511,7 +510,7 @@ class EmpleadosStreamTests {
 			List<Departamento> listDep = depHome.findAll();
 			
 			var lista = listDep.stream()
-									.filter(d -> d.getEmpleados())
+									.filter(d -> d.getEmpleados)
 									.count();
 			
 			listDep.forEach(System.out::println);

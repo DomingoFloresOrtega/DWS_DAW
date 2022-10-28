@@ -76,7 +76,7 @@ public class Bag<T> {
 	@Override
 	public String toString() {
 		for (T t : lista) {
-			return (String) t;
+			return String.valueOf(t);
 		}
 		
 		return "";
