@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 28 oct. 2022 5:19:18 by Hibernate Tools 5.6.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="empleados" name="es.iesvegademijas.streams.Empleado" optimistic-lock="none" table="empleado">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="es.iesvegademijas.streams.Departamento" fetch="select" name="departamento">
+            <column name="codigo_departamento"/>
+        </many-to-one>
+        <property name="nif" type="string">
+            <column length="9" name="nif" not-null="true" unique="true"/>
+        </property>
+        <property name="nombre" type="string">
+            <column length="100" name="nombre" not-null="true"/>
+        </property>
+        <property name="apellido1" type="string">
+            <column length="100" name="apellido1" not-null="true"/>
+        </property>
+        <property name="apellido2" type="string">
+            <column length="100" name="apellido2"/>
+        </property>
+    </class>
+</hibernate-mapping>
