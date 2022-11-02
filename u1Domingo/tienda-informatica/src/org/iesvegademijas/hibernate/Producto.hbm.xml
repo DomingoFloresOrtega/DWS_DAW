@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 9 oct. 2022 14:12:31 by Hibernate Tools 5.6.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="tienda" name="org.iesvegademijas.hibernate.Producto" optimistic-lock="none" table="producto">
+        <id name="codigo" type="java.lang.Integer">
+            <column name="codigo"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="org.iesvegademijas.hibernate.Fabricante" fetch="select" name="fabricante">
+            <column name="codigo_fabricante" not-null="true"/>
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column length="100" name="nombre" not-null="true"/>
+        </property>
+        <property name="precio" type="double">
+            <column name="precio" not-null="true" precision="22" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>
