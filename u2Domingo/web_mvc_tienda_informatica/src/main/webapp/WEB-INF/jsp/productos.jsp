@@ -49,24 +49,24 @@
 			<hr/>
 		</div>
 	<% 
-        if (request.getAttribute("listaFabricantes") != null) {
+        if (request.getAttribute("listaProductos") != null) {
             List<Producto> listaProducto = (List<Producto>)request.getAttribute("listaProductos");
             
             for (Producto productos : listaProducto) {
     %>
 
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 33%"><%= productos.getCodigo()%></div>
-			<div style="float: left;width: 33%"><%= productos.getNombre()%></div>
-			<div style="float: left;width: 33%"><%= productos.getPrecio()%></div>
+			<div style="float: left;width: 25%"><%= productos.getCodigo()%></div>
+			<div style="float: left;width: 25%"><%= productos.getNombre()%></div>
+			<div style="float: left;width: 25%"><%= productos.getPrecio()%></div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<form action="/tienda_informatica/fabricantes/<%= productos.getCodigo()%>" style="display: inline;">
+				<form action="/tienda_informatica/productos/<%= productos.getCodigo()%>" style="display: inline;">
     				<input type="submit" value="Ver Detalle" />
 				</form>
-				<form action="/tienda_informatica/fabricantes/editar/<%= productos.getCodigo()%>" style="display: inline;">
+				<form action="/tienda_informatica/productos/editar/<%= productos.getCodigo()%>" style="display: inline;">
     				<input type="submit" value="Editar" />
 				</form>
-				<form action="/tienda_informatica/fabricantes/borrar/" method="post" style="display: inline;">
+				<form action="/tienda_informatica/productos/borrar/" method="post" style="display: inline;">
 					<input type="hidden" name="__method__" value="delete"/>
 					<input type="hidden" name="codigo" value="<%= productos.getCodigo()%>"/>
     				<input type="submit" value="Eliminar" />

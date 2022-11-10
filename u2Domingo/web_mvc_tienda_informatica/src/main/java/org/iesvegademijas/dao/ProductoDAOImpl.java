@@ -68,7 +68,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
 		Statement s = null;
         ResultSet rs = null;
         
-        List<Producto> listFab = new ArrayList<>(); 
+        List<Producto> listPro = new ArrayList<>(); 
         
         try {
         	conn = connectDB();
@@ -80,9 +80,11 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
             while (rs.next()) {
             	Producto pro = new Producto();
             	int idx = 1;
-            	pro.setCodigo(rs.getInt(idx++));
-            	pro.setNombre(rs.getString(idx));
-            	listFab.add(pro);
+            	pro.setCodigo(rs.getInt("codigo"));
+            	pro.setNombre(rs.getString("nombre"));
+            	pro.setPrecio(rs.getDouble("precio"));
+            	pro.setCodigoFabricante(rs.getInt("codigo_fabricante"));
+            	listPro.add(pro);
             }
           
 		} catch (SQLException e) {
@@ -92,7 +94,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
 		} finally {
             closeDb(conn, s, rs);
         }
-        return listFab;
+        return listPro;
         
 	}
 
@@ -235,8 +237,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
 		pd.update(p1);
 		
 		// Eliminar el producto insertado
-		pd.delete(12);
-		
+		pd.delete(12);	
 	}
 
 }
