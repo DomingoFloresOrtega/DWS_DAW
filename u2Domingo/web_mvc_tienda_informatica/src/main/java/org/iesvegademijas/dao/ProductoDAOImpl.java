@@ -33,10 +33,12 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
         	//ps = conn.prepareStatement("INSERT INTO fabricante (nombre) VALUES (?)", new String[] {"codigo"});        	
         	//Ver también, AbstractDAOImpl.executeInsert ...
         	//Columna fabricante.codigo es clave primaria auto_increment, por ese motivo se omite de la sentencia SQL INSERT siguiente. 
-        	ps = conn.prepareStatement("INSERT INTO producto (nombre) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+        	ps = conn.prepareStatement("INSERT INTO producto (nombre, precio, codigo_fabricante) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
             
             int idx = 1;
             ps.setString(idx++, producto.getNombre());
+            ps.setDouble(idx++, producto.getPrecio());
+            ps.setInt(idx++, producto.getCodigoFabricante());
                    
             int rows = ps.executeUpdate();
             if (rows == 0) 
@@ -147,9 +149,11 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
         try {
         	conn = connectDB();
         	
-        	ps = conn.prepareStatement("UPDATE producto SET nombre = ?  WHERE codigo = ?");
+        	ps = conn.prepareStatement("UPDATE producto SET nombre = ?, precio = ?, codigo_fabricante = ?  WHERE codigo = ?");
         	int idx = 1;
         	ps.setString(idx++, producto.getNombre());
+            ps.setDouble(idx++, producto.getPrecio());
+            ps.setInt(idx++, producto.getCodigoFabricante());
         	ps.setInt(idx, producto.getCodigo());
         	
         	int rows = ps.executeUpdate();
@@ -196,6 +200,42 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
 		} finally {
             closeDb(conn, ps, rs);
         }
+		
+	}
+	
+	public static void main(String[] args) {
+		ProductoDAO pd = new ProductoDAOImpl();
+		
+		// Obtener todos los productos
+		List<Producto> lp = pd.getAll();
+		
+		lp.forEach(System.out::println);
+		
+		
+		// Obtener el producto 1
+		System.out.println("========");
+		System.out.println(pd.find(1));
+		
+		// Insertar un nuevo producto
+		System.out.println("========");
+		Producto p1 = new Producto();
+		
+		p1.setNombre("Impresora Epson Ecotank");
+		p1.setPrecio(100.0);
+		p1.setCodigoFabricante(1);
+		
+		pd.create(p1);
+		
+		// Actualizar el ultimo producto
+		p1.setCodigo(18);
+		p1.setNombre("Impresora Epson Ecotank 8910");
+		p1.setPrecio(89.95);
+		p1.setCodigoFabricante(2);
+		
+		pd.update(p1);
+		
+		// Eliminar el producto insertado
+		pd.delete(12);
 		
 	}
 
