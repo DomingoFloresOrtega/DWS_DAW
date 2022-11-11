@@ -121,8 +121,10 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
         	if (rs.next()) {
         		Producto pro = new Producto();
         		idx = 1;
-        		pro.setCodigo(rs.getInt(idx++));
-        		pro.setNombre(rs.getString(idx));
+        		pro.setCodigo(rs.getInt("codigo"));
+        		pro.setNombre(rs.getString("nombre"));
+        		pro.setPrecio(rs.getDouble("precio"));
+        		pro.setCodigoFabricante(rs.getInt("codigo_fabricante"));
         		
         		return Optional.of(pro);
         	}
@@ -216,7 +218,7 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
 		
 		// Obtener el producto 1
 		System.out.println("========");
-		System.out.println(pd.find(1));
+		System.out.println(pd.find(2));
 		
 		// Insertar un nuevo producto
 		System.out.println("========");

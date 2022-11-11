@@ -133,6 +133,7 @@ public class ProductosServlet extends HttpServlet {
 			String nombre = request.getParameter("nombre");
 			Double precio = Double.parseDouble(request.getParameter("precio"));
 			int codigoFab = Integer.parseInt(request.getParameter("codigo_fabricante"));
+			
 			Producto nuevoPro = new Producto();
 			nuevoPro.setNombre(nombre);
 			nuevoPro.setPrecio(precio);
@@ -172,6 +173,8 @@ public class ProductosServlet extends HttpServlet {
 		ProductoDAO proDAO = new ProductoDAOImpl();
 		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
+		String precio = request.getParameter("precio");
+		String codigoFab = request.getParameter("codigo_fabricante");
 		Producto pro = new Producto();
 		
 		try {
@@ -179,6 +182,8 @@ public class ProductosServlet extends HttpServlet {
 			int id = Integer.parseInt(codigo);
 			pro.setCodigo(id);
 			pro.setNombre(nombre);
+			pro.setPrecio(Double.parseDouble(precio));
+			pro.setCodigoFabricante(Integer.parseInt(codigoFab));
 			proDAO.update(pro);
 			
 		} catch (NumberFormatException nfe) {

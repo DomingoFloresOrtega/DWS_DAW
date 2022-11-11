@@ -40,8 +40,9 @@
 			<hr/>
 		</div>
 		<div class="clearfix">
-			<div style="float: left;width: 33%">Código</div>
-			<div style="float: left;width: 33%">Nombre</div>
+			<div style="float: left;width: 25%">Código</div>
+			<div style="float: left;width: 25%">Nombre</div>
+			<div style="float: left;width: 25%">Productos</div>
 			<div style="float: none;width: auto;overflow: hidden;">Acción</div>
 		</div>
 		<div class="clearfix">
@@ -50,6 +51,7 @@
 	<% 
         if (request.getAttribute("listaFabricantes") != null) {
             List<Fabricante> listaFabricante = (List<Fabricante>)request.getAttribute("listaFabricantes");
+            List<FabDTO> listaDTO = 
             
             for (Fabricante fabricante : listaFabricante) {
     %>
@@ -57,6 +59,9 @@
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 33%"><%= fabricante.getCodigo()%></div>
 			<div style="float: left;width: 33%"><%= fabricante.getNombre()%></div>
+			for (FabDTO fDTO : listaDTO) {
+				<div style="float: left;width: 33%"><%= fabricante.getNombre()%></div>
+			}
 			<div style="float: none;width: auto;overflow: hidden;">
 				<form action="/tienda_informatica/fabricantes/<%= fabricante.getCodigo()%>" style="display: inline;">
     				<input type="submit" value="Ver Detalle" />

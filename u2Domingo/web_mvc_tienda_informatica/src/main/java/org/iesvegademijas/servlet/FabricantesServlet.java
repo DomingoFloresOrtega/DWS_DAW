@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.iesvegademijas.dao.FabDTO;
 import org.iesvegademijas.dao.FabricanteDAO;
 import org.iesvegademijas.dao.FabricanteDAOImpl;
 import org.iesvegademijas.model.Fabricante;

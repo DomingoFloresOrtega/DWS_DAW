@@ -197,5 +197,21 @@ public class FabricanteDAOImpl extends AbstractDAOImpl implements FabricanteDAO{
         }
 		
 	}
+	
+	//Ampliación CRUD:
+
+    public Optional<Integer> getCountProductos(int id){
+    	FabricanteDAO fabDAO = new FabricanteDAOImpl();
+    	
+    	var lFabDTO = fabDAO.getAll().stream().map( f -> {
+			
+			FabDTO fDTO = new FabDTO(f);
+			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()));
+			
+			return fDTO;
+		});
+    	
+    	return fabDAO;
+    }
 
 }
