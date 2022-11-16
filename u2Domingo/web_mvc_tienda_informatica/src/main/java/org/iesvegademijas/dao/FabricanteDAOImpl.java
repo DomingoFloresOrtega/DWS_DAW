@@ -198,20 +198,44 @@ public class FabricanteDAOImpl extends AbstractDAOImpl implements FabricanteDAO{
 		
 	}
 	
-	//Ampliación CRUD:
+	/**
+	 * Devuelve lista con todos loa fabricantes.
+	 */
+	public List<FabDTO> getNumerosPro() {
+		
+		Connection conn = null;
+		Statement s = null;
+        ResultSet rs = null;
+        
+        List<FabDTO> listFab = new ArrayList<>(); 
+        
+        try {
+        	conn = connectDB();
 
-    public Optional<Integer> getCountProductos(int id){
-    	FabricanteDAO fabDAO = new FabricanteDAOImpl();
-    	
-    	var lFabDTO = fabDAO.getAll().stream().map( f -> {
-			
-			FabDTO fDTO = new FabDTO(f);
-			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()));
-			
-			return fDTO;
-		});
-    	
-    	return fabDAO;
-    }
+        	// Se utiliza un objeto Statement dado que no hay parámetros en la consulta.
+        	s = conn.createStatement();
+            		
+        	rs = s.executeQuery("SELECT F.codigo,F.nombre, count(P.codigo) as numProd "
+        			+ "FROM fabricante F left outer JOIN producto P on F.codigo = P.codigo_fabricante "
+        			+ "GROUP BY F.codigo");        
+            while (rs.next()) {
+            	FabDTO fab = new FabDTO();
+            	int idx = 1;
+            	fab.setCodigo(rs.getInt("codigo"));
+            	fab.setNombre(rs.getString("nombre"));
+            	fab.setNumProductos(rs.getInt("numProd"));
+            	listFab.add(fab);
+            }
+          
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+            closeDb(conn, s, rs);
+        }
+        return listFab;
+        
+	}
 
 }

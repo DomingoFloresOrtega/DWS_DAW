@@ -41,7 +41,7 @@ public class FabricantesServlet extends HttpServlet {
 			//	/fabricantes/
 			//	/fabricantes
 			
-			request.setAttribute("listaFabricantes", fabDAO.getAll());		
+			request.setAttribute("listaFabricantes", fabDAO.getNumerosPro());		
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/fabricantes.jsp");
 			        		       
 		} else {

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="org.iesvegademijas.model.Fabricante"%>
+<%@page import="org.iesvegademijas.model.Producto"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Optional"%>
 <!DOCTYPE html>
 <html>
@@ -54,7 +56,22 @@
 				Codigo de fabricante
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<input name="codigo_fabricante" />
+			<%
+			
+			List<Fabricante> listaFabricante = (List<Fabricante>)request.getAttribute("listaFabricantes");
+            
+            for (Fabricante f : listaFabricante) {
+    %>
+
+		<div style="margin-top: 6px;" class="clearfix">
+			<select name="codigo_fabricante">
+				<option value="<% f.getCodigo(); %>"><% f.getNombre(); %></option>
+			</select>
+		</div>
+
+	<% 
+            }
+  %>
 			</div> 
 		</div>
 

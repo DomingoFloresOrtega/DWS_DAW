@@ -5,17 +5,21 @@ import java.util.Optional;
 import org.iesvegademijas.model.Fabricante;
 
 public class FabDTO extends Fabricante {
-	private Optional<Integer> numProductos;
+	private Integer numProductos;
+	
+	public FabDTO() {
+		 super();
+	}
 	
 	public FabDTO(Fabricante fab) {
 		 super();
 	}
 
-	public Optional<Integer> getNumProductos() {
+	public Integer getNumProductos() {
 		return numProductos;
 	}
 
-	public void setNumProductos(Optional<Integer> numProductos) {
+	public void setNumProductos(Integer numProductos) {
 		this.numProductos = numProductos;
 	}
 

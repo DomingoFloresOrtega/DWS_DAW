@@ -18,6 +18,8 @@ public interface FabricanteDAO {
 	
 	//Ampliación CRUD:
 
-    public Optional<Integer> getCountProductos(int id);
+    //public Optional<Integer> getCountProductos(int id);
+    
+    public List<FabDTO> getNumerosPro();
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="org.iesvegademijas.model.Fabricante"%>
+<%@page import="org.iesvegademijas.dao.FabDTO"%>
 <%@page import="java.util.List"%>
 
 <!DOCTYPE html>
@@ -50,18 +51,16 @@
 		</div>
 	<% 
         if (request.getAttribute("listaFabricantes") != null) {
-            List<Fabricante> listaFabricante = (List<Fabricante>)request.getAttribute("listaFabricantes");
-            List<FabDTO> listaDTO = 
+            List<FabDTO> listaFabricante = (List<FabDTO>)request.getAttribute("listaFabricantes");
             
-            for (Fabricante fabricante : listaFabricante) {
+            for (FabDTO fabricante : listaFabricante) {
     %>
 
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 33%"><%= fabricante.getCodigo()%></div>
-			<div style="float: left;width: 33%"><%= fabricante.getNombre()%></div>
-			for (FabDTO fDTO : listaDTO) {
-				<div style="float: left;width: 33%"><%= fabricante.getNombre()%></div>
-			}
+			<div style="float: left;width: 25%"><%= fabricante.getCodigo()%></div>
+			<div style="float: left;width: 25%"><%= fabricante.getNombre()%></div>
+			<div style="float: left;width: 25%"><%= fabricante.getNumProductos() %></div>
+		
 			<div style="float: none;width: auto;overflow: hidden;">
 				<form action="/tienda_informatica/fabricantes/<%= fabricante.getCodigo()%>" style="display: inline;">
     				<input type="submit" value="Ver Detalle" />
