@@ -1,7 +1,11 @@
 package org.iesvegademijas.servlet;
 
+import static java.util.stream.Collectors.toList;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,7 +45,18 @@ public class FabricantesServlet extends HttpServlet {
 			//	/fabricantes/
 			//	/fabricantes
 			
-			request.setAttribute("listaFabricantes", fabDAO.getNumerosPro());		
+			List<FabDTO> lista = fabDAO.getAll().stream().map(f -> {
+    			FabDTO fDTO = new FabDTO();
+    			
+    			fDTO.setCodigo(f.getCodigo());
+    			fDTO.setNombre(f.getNombre());
+    			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
+    			
+    			return fDTO;
+    			
+    		}).collect(toList());
+			
+			request.setAttribute("listaFabricantes", lista);		
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/fabricantes.jsp");
 			        		       
 		} else {

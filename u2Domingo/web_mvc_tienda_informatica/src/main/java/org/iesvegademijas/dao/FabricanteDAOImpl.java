@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import static java.util.stream.Collectors.*;
 
 import org.iesvegademijas.model.Fabricante;
 
@@ -236,6 +237,40 @@ public class FabricanteDAOImpl extends AbstractDAOImpl implements FabricanteDAO{
         }
         return listFab;
         
+	}
+	
+	public Optional<Integer> getCountProductos(int id){
+		
+		FabricanteDAO fabDAO = new FabricanteDAOImpl();
+		Connection conn = null;
+		PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        try {
+        	conn = connectDB();
+
+        	ps = conn.prepareStatement("SELECT count(codigo) as numProd FROM producto WHERE codigo_fabricante = ?");
+                   
+        	int idx = 1;
+        	ps.setInt(idx, id);
+        	
+        	rs = ps.executeQuery();
+        	
+        	if (rs.next()) {
+        		int num = rs.getInt("numProd");
+        		return Optional.of(num);
+        	}
+        	
+          
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+            closeDb(conn, ps, rs);
+        }
+        
+        return Optional.empty();
 	}
 
 }
