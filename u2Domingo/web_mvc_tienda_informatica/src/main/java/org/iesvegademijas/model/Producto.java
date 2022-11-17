@@ -7,6 +7,7 @@ public class Producto {
 	private String nombre;
 	private Double precio;
 	private int codigoFabricante;
+	private String nombre_fab;
 	
 	
 	public Producto() {
@@ -38,9 +39,17 @@ public class Producto {
 		this.codigoFabricante = codigoFabricante;
 	}
 
+	public String getNombre_fab() {
+		return nombre_fab;
+	}
+
+	public void setNombre_fab(String nombre_fab) {
+		this.nombre_fab = nombre_fab;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(codigo, codigoFabricante, nombre, precio);
+		return Objects.hash(codigo, codigoFabricante, nombre, nombre_fab, precio);
 	}
 
 	@Override
@@ -53,13 +62,14 @@ public class Producto {
 			return false;
 		Producto other = (Producto) obj;
 		return codigo == other.codigo && codigoFabricante == other.codigoFabricante
-				&& Objects.equals(nombre, other.nombre) && Objects.equals(precio, other.precio);
+				&& Objects.equals(nombre, other.nombre) && Objects.equals(nombre_fab, other.nombre_fab)
+				&& Objects.equals(precio, other.precio);
 	}
 
 	@Override
 	public String toString() {
 		return "Producto [codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", codigoFabricante="
-				+ codigoFabricante + "]";
+				+ codigoFabricante + ", nombre_fab=" + nombre_fab + "]";
 	}
 	
 }

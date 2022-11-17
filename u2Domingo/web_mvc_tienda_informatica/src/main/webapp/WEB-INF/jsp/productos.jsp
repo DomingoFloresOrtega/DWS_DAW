@@ -53,8 +53,9 @@
             List<Producto> listaProducto = (List<Producto>)request.getAttribute("listaProductos");
             
             for (Producto productos : listaProducto) {
+            	
+            	if (productos.getCodigo() != 0){
     %>
-
 		<div style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 25%"><%= productos.getCodigo()%></div>
 			<div style="float: left;width: 25%"><%= productos.getNombre()%></div>
@@ -73,6 +74,13 @@
 				</form>
 			</div>
 		</div>
+		
+		<%
+            	}
+            	else {
+            		
+            	}
+		%>
 
 	<% 
             }

@@ -76,14 +76,17 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
         	// Se utiliza un objeto Statement dado que no hay parámetros en la consulta.
         	s = conn.createStatement();
             		
-        	rs = s.executeQuery("SELECT * FROM producto");          
+        	rs = s.executeQuery("SELECT p.codigo, p.nombre, p.precio, f.codigo, f.nombre "
+        			+ "FROM producto p RIGHT JOIN fabricante f on p.codigo_fabricante = f.codigo "
+        			+ "ORDER BY p.codigo ASC;");          
             while (rs.next()) {
             	Producto pro = new Producto();
             	int idx = 1;
-            	pro.setCodigo(rs.getInt("codigo"));
-            	pro.setNombre(rs.getString("nombre"));
-            	pro.setPrecio(rs.getDouble("precio"));
-            	pro.setCodigoFabricante(rs.getInt("codigo_fabricante"));
+            	pro.setCodigo(rs.getInt("p.codigo"));
+            	pro.setNombre(rs.getString("p.nombre"));
+            	pro.setPrecio(rs.getDouble("p.precio"));
+            	pro.setCodigoFabricante(rs.getInt("f.codigo"));
+            	pro.setNombre_fab(rs.getString("f.nombre"));
             	listPro.add(pro);
             }
           

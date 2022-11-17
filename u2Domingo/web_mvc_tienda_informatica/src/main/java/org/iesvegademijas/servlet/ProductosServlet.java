@@ -56,7 +56,7 @@ public class ProductosServlet extends HttpServlet {
 			//	/productos/
 			//	/productos
 			
-			request.setAttribute("listaProductos", proDAO.getAll());		
+			request.setAttribute("listaProductos", proDAO.getAll());
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/productos.jsp");
 			        		       
 		} else {
@@ -73,8 +73,11 @@ public class ProductosServlet extends HttpServlet {
 			
 			if (pathParts.length == 2 && "crear".equals(pathParts[1])) {
 				
+				ProductoDAO proDAO = new ProductoDAOImpl();
+				
 				// GET
-				// /productos/create									
+				// /productos/create	
+				request.setAttribute("listaProductos", proDAO.getAll());
 				dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/crear-producto.jsp");
         												
 			

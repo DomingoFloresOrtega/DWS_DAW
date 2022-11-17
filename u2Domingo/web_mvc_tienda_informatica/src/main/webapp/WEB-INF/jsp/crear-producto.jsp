@@ -56,22 +56,22 @@
 				Codigo de fabricante
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;">
-			<%
-			
-			List<Fabricante> listaFabricante = (List<Fabricante>)request.getAttribute("listaFabricantes");
-            
-            for (Fabricante f : listaFabricante) {
-    %>
 
 		<div style="margin-top: 6px;" class="clearfix">
 			<select name="codigo_fabricante">
-				<option value="<% f.getCodigo(); %>"><% f.getNombre(); %></option>
+			<%
+	            
+				List<Producto> listaProducto = (List<Producto>)request.getAttribute("listaProductos");
+				
+	            for (Producto p : listaProducto) {
+    		%>
+				<option value="<%=p.getCodigoFabricante() %>"><%=p.getNombre_fab() %></option>
+			<% 
+            	}
+  			%>
 			</select>
 		</div>
-
-	<% 
-            }
-  %>
+	
 			</div> 
 		</div>
 
