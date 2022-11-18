@@ -95,8 +95,24 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "formdata",
-					"formdata": []
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Producto 1",
+							"type": "default"
+						},
+						{
+							"key": "precio",
+							"value": "20",
+							"type": "default"
+						},
+						{
+							"key": "codigo_fabricante",
+							"value": "2",
+							"type": "default"
+						}
+					]
 				},
 				"url": {
 					"raw": "http://localhost:8080/tienda_informatica/productos/crear",
@@ -120,8 +136,34 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "formdata",
-					"formdata": []
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "__method__",
+							"value": "PUT",
+							"type": "default"
+						},
+						{
+							"key": "codigo",
+							"value": "50",
+							"type": "default"
+						},
+						{
+							"key": "nombre",
+							"value": "Otro producto",
+							"type": "default"
+						},
+						{
+							"key": "precio",
+							"value": "50",
+							"type": "default"
+						},
+						{
+							"key": "codigo_fabricante",
+							"value": "3",
+							"type": "default"
+						}
+					]
 				},
 				"url": {
 					"raw": "http://localhost:8080/tienda_informatica/productos/editar/{id}",
@@ -145,6 +187,21 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "__method__",
+							"value": "DELETE",
+							"type": "default"
+						},
+						{
+							"key": "codigo",
+							"value": "50",
+							"type": "default"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:8080/tienda_informatica/productos/borrar/{id}",
 					"protocol": "http",
