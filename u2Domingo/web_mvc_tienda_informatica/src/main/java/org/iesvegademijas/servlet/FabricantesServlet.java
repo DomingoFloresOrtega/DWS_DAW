@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,8 @@ public class FabricantesServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 				
 		String pathInfo = request.getPathInfo(); //
+		String orden = "1";
+		String modo = "2";
 			
 		if (pathInfo == null || "/".equals(pathInfo)) {
 			FabricanteDAO fabDAO = new FabricanteDAOImpl();
@@ -45,16 +48,68 @@ public class FabricantesServlet extends HttpServlet {
 			//	/fabricantes/
 			//	/fabricantes
 			
-			List<FabDTO> lista = fabDAO.getAll().stream().map(f -> {
-    			FabDTO fDTO = new FabDTO();
-    			
-    			fDTO.setCodigo(f.getCodigo());
-    			fDTO.setNombre(f.getNombre());
-    			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
-    			
-    			return fDTO;
-    			
-    		}).collect(toList());
+			orden = request.getParameter("ordenar-por");
+			modo = request.getParameter("modo-ordenar");
+			
+			List<FabDTO> lista = null;
+			
+			if (orden == null) {
+				lista = fabDAO.getAll().stream().map(f -> {
+	    		FabDTO fDTO = new FabDTO();
+	    			
+	    		fDTO.setCodigo(f.getCodigo());
+	    		fDTO.setNombre(f.getNombre());
+	    		fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
+	    			
+	    		return fDTO;
+	    			
+	    		}).collect(toList());
+			} else if (orden.equals("codigo") && modo.equals("ASC")) {
+				lista = fabDAO.getAll().stream().map(f -> {
+	    			FabDTO fDTO = new FabDTO();
+	    			
+	    			fDTO.setCodigo(f.getCodigo());
+	    			fDTO.setNombre(f.getNombre());
+	    			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
+	    			
+	    			return fDTO;
+	    			
+	    		}).sorted(Comparator.comparing(Fabricante::getCodigo)).collect(toList());
+			} else if (orden.equals("codigo") && modo.equals("DESC")) {
+				lista = fabDAO.getAll().stream().map(f -> {
+	    			FabDTO fDTO = new FabDTO();
+	    			
+	    			fDTO.setCodigo(f.getCodigo());
+	    			fDTO.setNombre(f.getNombre());
+	    			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
+	    			
+	    			return fDTO;
+	    			
+	    		}).sorted(Comparator.comparing(Fabricante::getCodigo).reversed()).collect(toList());
+			} else if (orden.equals("nombre") && modo.equals("ASC")) {
+				lista = fabDAO.getAll().stream().map(f -> {
+	    			FabDTO fDTO = new FabDTO();
+	    			
+	    			fDTO.setCodigo(f.getCodigo());
+	    			fDTO.setNombre(f.getNombre());
+	    			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
+	    			
+	    			return fDTO;
+	    			
+	    		}).sorted(Comparator.comparing(Fabricante::getNombre)).collect(toList());
+			} else if (orden.equals("nombre") && modo.equals("DESC")) {
+				lista = fabDAO.getAll().stream().map(f -> {
+	    			FabDTO fDTO = new FabDTO();
+	    			
+	    			fDTO.setCodigo(f.getCodigo());
+	    			fDTO.setNombre(f.getNombre());
+	    			fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
+	    			
+	    			return fDTO;
+	    			
+	    		}).sorted(Comparator.comparing(Fabricante::getNombre).reversed()).collect(toList());
+			}
+			
 			
 			request.setAttribute("listaFabricantes", lista);		
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/fabricantes.jsp");

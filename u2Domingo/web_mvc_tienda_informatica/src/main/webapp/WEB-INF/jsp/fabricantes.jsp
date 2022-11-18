@@ -33,6 +33,36 @@
 						<form action="/tienda_informatica/fabricantes/crear">
 							<input type="submit" value="Crear">
 						</form>
+						
+					</div>
+					
+				<div style="position: absolute; left: 55%; top : 39%;">
+					
+						<form action="/tienda_informatica/fabricantes">
+							<input type="submit" value="Ordenar">
+						</form>
+						
+					</div>
+					
+					<div style="position: absolute; left: 55%; top : 39%;">
+					
+						<form action="/tienda_informatica/fabricantes">
+							<select name="ordenar-por">
+								<option value="codigo" <% if (request.getParameter("ordenar-por") != null && request.getParameter("ordenar-por").equals("codigo") ) {%>
+								selected="selected"<% } %>>Codigo</option>
+								<option value="nombre" <% if (request.getParameter("ordenar-por") != null && request.getParameter("ordenar-por").equals("nombre")) {%>
+								selected="selected"<% } %>>Nombre</option>
+							</select>
+							
+							<select name="modo-ordenar">
+								<option value="ASC" <% if (request.getParameter("modo-ordenar") != null && request.getParameter("modo-ordenar").equals("ASC")) {%>
+								selected<% } %>>Ascendente</option>
+								<option value="DESC" <% if (request.getParameter("modo-ordenar") != null && request.getParameter("modo-ordenar").equals("DESC")) {%>
+								selected<% } %>>Descendente</option>
+							</select>
+							<input type="submit" value="Ordenar">
+						</form>
+						
 					</div>
 				
 			</div>
