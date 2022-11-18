@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "41a54c3d-32d7-4da2-a086-08dc853f603f",
+		"name": "Rutas /productos/*",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/productos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/productos/crear",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/productos/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"productos",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/productos/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/productos/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"productos",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/productos/editar/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/productos/editar/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"productos",
+						"editar",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/productos/crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/productos/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"productos",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/productos/editar/{id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/productos/editar/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"productos",
+						"editar",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/productos/borrar/{id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/productos/borrar/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"productos",
+						"borrar",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
