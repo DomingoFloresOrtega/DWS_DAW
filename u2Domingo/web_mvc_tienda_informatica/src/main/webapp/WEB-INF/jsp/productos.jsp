@@ -27,11 +27,20 @@
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 				
-				<div style="position: absolute; left: 39%; top : 39%;">
+				<div style="position: absolute; left: 10%; top : 39%;">
 					
 						<form action="/tienda_informatica/productos/crear">
 							<input type="submit" value="Crear">
 						</form>
+					</div>
+					
+					<div style="position: absolute; left: 45%; top : 39%;">
+					
+						<form action="/tienda_informatica/productos">
+							<input type="text" name="filtar-por-texto"/>
+							<input type="submit" value="Buscar">
+						</form>
+						
 					</div>
 				
 			</div>

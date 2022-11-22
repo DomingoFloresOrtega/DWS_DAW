@@ -1,6 +1,9 @@
 package org.iesvegademijas.servlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.parser.TokenList;
 import org.iesvegademijas.dao.FabricanteDAO;
 import org.iesvegademijas.dao.FabricanteDAOImpl;
 import org.iesvegademijas.dao.ProductoDAO;
@@ -56,7 +60,19 @@ public class ProductosServlet extends HttpServlet {
 			//	/productos/
 			//	/productos
 			
-			request.setAttribute("listaProductos", proDAO.getAll());
+			String filtro = request.getParameter("filtrar-por-texto");
+			
+			if (filtro != null) {
+				ProductoDAO proFiltro = new ProductoDAOImpl();
+				List<Producto> listaFiltro = proDAO.getAll();
+				
+				List<String> listaFiltrada = listaFiltro.stream();
+				
+				request.setAttribute("listaProductos", listaFiltrada);
+			} else {
+				request.setAttribute("listaProductos", proDAO.getAll());
+			}
+			
 			dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/productos.jsp");
 			        		       
 		} else {

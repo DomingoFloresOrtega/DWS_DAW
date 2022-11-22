@@ -100,6 +100,51 @@ public class ProductoDAOImpl extends AbstractDAOImpl implements ProductoDAO{
         return listPro;
         
 	}
+	
+	/**
+	 * Devuelve lista con todos loa fabricantes.
+	 */
+	@Override
+	public List<Producto> getAllFilter() {
+		
+		Connection conn = null;
+		Statement s = null;
+        ResultSet rs = null;
+        
+        List<Producto> listPro = new ArrayList<>(); 
+        
+        try {
+        	
+        	conn = connectDB();
+
+        	// Se utiliza un objeto Statement dado que no hay parámetros en la consulta.
+        	s = conn.createStatement();
+            		
+        	rs = s.executeQuery("SELECT p.codigo, p.nombre, p.precio, f.codigo, f.nombre "
+        			+ "FROM producto p RIGHT JOIN fabricante f on p.codigo_fabricante = f.codigo "
+        			+ "ORDER BY p.codigo ASC;");          
+            while (rs.next()) {
+            	Producto pro = new Producto();
+            	int idx = 1;
+            	pro.setCodigo(rs.getInt("p.codigo"));
+            	pro.setNombre(rs.getString("p.nombre"));
+            	pro.setPrecio(rs.getDouble("p.precio"));
+            	pro.setCodigoFabricante(rs.getInt("f.codigo"));
+            	pro.setNombre_fab(rs.getString("f.nombre"));
+            	listPro.add(pro);
+            	
+            }
+          
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+            closeDb(conn, s, rs);
+        }
+        return listPro;
+        
+	}
 
 	/**
 	 * Devuelve Optional de fabricante con el ID dado.

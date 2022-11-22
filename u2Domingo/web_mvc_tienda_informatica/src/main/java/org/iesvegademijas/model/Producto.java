@@ -8,6 +8,7 @@ public class Producto {
 	private Double precio;
 	private int codigoFabricante;
 	private String nombre_fab;
+	private String filtro;
 	
 	
 	public Producto() {
@@ -45,6 +46,14 @@ public class Producto {
 
 	public void setNombre_fab(String nombre_fab) {
 		this.nombre_fab = nombre_fab;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
 
 	@Override
