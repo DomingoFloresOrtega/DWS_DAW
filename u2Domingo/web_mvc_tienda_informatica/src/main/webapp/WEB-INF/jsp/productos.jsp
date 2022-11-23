@@ -37,7 +37,7 @@
 					<div style="position: absolute; left: 45%; top : 39%;">
 					
 						<form action="/tienda_informatica/productos">
-							<input type="text" name="filtar-por-texto"/>
+							<input type="text" name="filtrar-por-texto"/>
 							<input type="submit" value="Buscar">
 						</form>
 						

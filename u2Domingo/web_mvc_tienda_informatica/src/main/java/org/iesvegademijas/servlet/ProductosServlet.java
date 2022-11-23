@@ -19,6 +19,7 @@ import org.iesvegademijas.dao.ProductoDAO;
 import org.iesvegademijas.dao.ProductoDAOImpl;
 import org.iesvegademijas.model.Fabricante;
 import org.iesvegademijas.model.Producto;
+import static java.util.stream.Collectors.*;
 
 /**
  * Servlet implementation class Productos
@@ -63,10 +64,17 @@ public class ProductosServlet extends HttpServlet {
 			String filtro = request.getParameter("filtrar-por-texto");
 			
 			if (filtro != null) {
-				ProductoDAO proFiltro = new ProductoDAOImpl();
 				List<Producto> listaFiltro = proDAO.getAll();
 				
-				List<String> listaFiltrada = listaFiltro.stream();
+				System.out.println(listaFiltro.get(4).getNombre());
+				
+				List<Producto> listaFiltrada = listaFiltro.stream().filter(p -> {
+						if (p.getNombre() != null) {
+							return p.getNombre().toLowerCase().contains(filtro.toLowerCase());
+						} else {
+							return false;
+						}
+				}).collect(toList());
 				
 				request.setAttribute("listaProductos", listaFiltrada);
 			} else {
