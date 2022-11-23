@@ -1,12 +1,7 @@
 <html>
-<head>
-<title>Redirigiendo...</title>
-</head>
-<body>
-Redirigiendo. Por favor, espere...
+<%@ include file="/WEB-INF/jsp/header.jspf" %>
 
-<%
-   response.sendRedirect("/tienda_informatica/fabricantes");
-%>
-</body>
+<%@ include file="/WEB-INF/jsp/nav.jspf" %>
+<h1>Bienvenidos</h1>
+<%@ include file ="/WEB-INF/jsp/footer.jspf"%>
 </html>

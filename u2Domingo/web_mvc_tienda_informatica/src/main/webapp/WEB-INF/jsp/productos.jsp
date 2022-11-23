@@ -5,6 +5,9 @@
 
 <!DOCTYPE html>
 <html>
+<%@ include file="/WEB-INF/jsp/header.jspf" %>
+
+<%@ include file="/WEB-INF/jsp/nav.jspf" %>
 <head>
 <meta charset="UTF-8">
 <title>Productos</title>
@@ -98,6 +101,7 @@
 		No hay registros de productos
 	<% } %>
 	</div>
+	<%@ include file ="/WEB-INF/jsp/footer.jspf"%>
 </body>
 </body>
 </html>

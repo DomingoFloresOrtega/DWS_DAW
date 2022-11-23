@@ -4,6 +4,9 @@
 <%@page import="java.util.Optional"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="/WEB-INF/jsp/header.jspf" %>
+
+<%@ include file="/WEB-INF/jsp/nav.jspf" %>
 <head>
 <meta charset="UTF-8">
 <title>Detalle Fabricante</title>
@@ -66,6 +69,7 @@
 		<% 	} %>
 	</form>
 </div>
+<%@ include file ="/WEB-INF/jsp/footer.jspf"%>
 
 </body>
 </html>
