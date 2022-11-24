@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "ab8c678e-ca38-40db-adb5-609435310620",
+		"name": "Rutas /usuarios/*",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/usuarios/crear",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/usuarios/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"usuarios",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/usuarios/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/usuarios/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"usuarios",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/usuarios/editar/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/usuarios/editar/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"usuarios",
+						"editar",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/usuarios/crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user",
+							"value": "antonio",
+							"type": "default"
+						},
+						{
+							"key": "pass",
+							"value": "1234",
+							"type": "default"
+						},
+						{
+							"key": "rol",
+							"value": "administrador",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/usuarios/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"usuarios",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/usuarios/editar/{id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "_method_",
+							"value": "PUT",
+							"type": "default"
+						},
+						{
+							"key": "user",
+							"value": "antonio",
+							"type": "default"
+						},
+						{
+							"key": "pass",
+							"value": "12345",
+							"type": "default"
+						},
+						{
+							"key": "rol",
+							"value": "cliente",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/usuarios/editar/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"usuarios",
+						"editar",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/usuarios/borrar/{id}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "__method__",
+							"value": "DELETE",
+							"type": "default"
+						},
+						{
+							"key": "codigo",
+							"value": "15",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/tienda_informatica/usuarios/borrar/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"tienda_informatica",
+						"usuarios",
+						"borrar",
+						"15"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
