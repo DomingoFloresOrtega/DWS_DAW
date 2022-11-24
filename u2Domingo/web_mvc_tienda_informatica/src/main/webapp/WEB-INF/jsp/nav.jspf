@@ -1,7 +1,8 @@
 <nav class="menu">
 		<a href="/tienda_informatica">HOME</a>
-		<a href="fabricantes">Fabricantes</a>
-		<a href="productos">Producto</a>
+		<a href="/tienda_informatica/fabricantes">Fabricantes</a>
+		<a href="/tienda_informatica/productos">Producto</a>
+		<a href="/tienda_informatica/usuarios">Usuarios</a>
 		<div class="menu-log">
 			<a href="#login">LOGIN</a>
 		</div>

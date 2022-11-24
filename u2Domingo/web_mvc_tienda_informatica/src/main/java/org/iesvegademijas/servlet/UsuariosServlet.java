@@ -4,12 +4,16 @@ import static java.util.stream.Collectors.toList;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.iesvegademijas.dao.FabDTO;
 import org.iesvegademijas.dao.FabricanteDAO;
 import org.iesvegademijas.dao.FabricanteDAOImpl;
+import org.iesvegademijas.dao.UsuarioDAO;
+import org.iesvegademijas.dao.UsuarioDAOImpl;
 import org.iesvegademijas.model.Fabricante;
+import org.iesvegademijas.model.Producto;
+import org.iesvegademijas.model.Usuario;
 
+@WebServlet(name = "UsuariosServlet", urlPatterns = { "/usuarios/*" })
 public class UsuariosServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -38,33 +47,17 @@ public class UsuariosServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 				
 		String pathInfo = request.getPathInfo(); //
-		String orden = "1";
-		String modo = "2";
 			
 		if (pathInfo == null || "/".equals(pathInfo)) {
-			FabricanteDAO fabDAO = new FabricanteDAOImpl();
+			UsuarioDAO uDAO = new UsuarioDAOImpl();
 			
 			//GET 
 			//	/usuarios/
 			//	/usuarios
 			
-			orden = request.getParameter("ordenar-por");
-			modo = request.getParameter("modo-ordenar");
+			List<Usuario> listaFiltro = uDAO.getAll();
 			
-			List<FabDTO> lista = null;
-			
-			if (orden == null) {
-				lista = fabDAO.getAll().stream().map(f -> {
-	    		FabDTO fDTO = new FabDTO();
-	    			
-	    		fDTO.setCodigo(f.getCodigo());
-	    		fDTO.setNombre(f.getNombre());
-	    		fDTO.setNumProductos(fabDAO.getCountProductos(f.getCodigo()).get());
-	    			
-	    		return fDTO;
-	    			
-	    		}).collect(toList());
-			}
+			List<Usuario> lista = listaFiltro.stream().collect(toList());
 			
 			
 			request.setAttribute("listaUsuarios", lista);		
@@ -90,12 +83,12 @@ public class UsuariosServlet extends HttpServlet {
         												
 			
 			} else if (pathParts.length == 2) {
-				FabricanteDAO fabDAO = new FabricanteDAOImpl();
+				UsuarioDAO uDAO = new UsuarioDAOImpl();
 				// GET
 				// /usuarios/{id}
 				try {
-					request.setAttribute("fabricante",fabDAO.find(Integer.parseInt(pathParts[1])));
-					dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/detalle-fabricante.jsp");
+					request.setAttribute("usuario",uDAO.find(Integer.parseInt(pathParts[1])));
+					dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/detalle-usuario.jsp");
 					        								
 				} catch (NumberFormatException nfe) {
 					nfe.printStackTrace();
@@ -103,12 +96,12 @@ public class UsuariosServlet extends HttpServlet {
 				}
 				
 			} else if (pathParts.length == 3 && "editar".equals(pathParts[1]) ) {
-				FabricanteDAO fabDAO = new FabricanteDAOImpl();
+				UsuarioDAO uDAO = new UsuarioDAOImpl();
 				
 				// GET
 				// /usuarios/edit/{id}
 				try {
-					request.setAttribute("fabricante",fabDAO.find(Integer.parseInt(pathParts[2])));
+					request.setAttribute("usuario",uDAO.find(Integer.parseInt(pathParts[2])));
 					dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editar-usuario.jsp");
 					        								
 				} catch (NumberFormatException nfe) {
@@ -139,12 +132,23 @@ public class UsuariosServlet extends HttpServlet {
 		
 		if (__method__ == null) {
 			// Crear uno nuevo
-			FabricanteDAO fabDAO = new FabricanteDAOImpl();
+			UsuarioDAO uDAO = new UsuarioDAOImpl();
 			
-			String nombre = request.getParameter("nombre");
-			Fabricante nuevoFab = new Fabricante();
-			nuevoFab.setNombre(nombre);
-			fabDAO.create(nuevoFab);			
+			String user = request.getParameter("user");
+			String pass = request.getParameter("pass");
+			String rol = request.getParameter("rol");
+			Usuario nuevoUser = new Usuario();
+			nuevoUser.setUser(user);
+			try {
+				nuevoUser.setPass(hashPassword(pass));
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+			nuevoUser.setRol(rol);
+			// Comprobacion de codigo valido
+			if (user != "" && pass != "") {
+				uDAO.create(nuevoUser);
+			}		
 			
 		} else if (__method__ != null && "put".equalsIgnoreCase(__method__)) {			
 			// Actualizar uno existente
@@ -176,20 +180,26 @@ public class UsuariosServlet extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		FabricanteDAO fabDAO = new FabricanteDAOImpl();
+		UsuarioDAO uDAO = new UsuarioDAOImpl();
 		String codigo = request.getParameter("codigo");
-		String nombre = request.getParameter("nombre");
-		Fabricante fab = new Fabricante();
+		String user = request.getParameter("user");
+		String pass = request.getParameter("pass");
+		String rol = request.getParameter("rol");
+		Usuario u = new Usuario();
 		
 		try {
 			
 			int id = Integer.parseInt(codigo);
-			fab.setCodigo(id);
-			fab.setNombre(nombre);
-			fabDAO.update(fab);
+			u.setCodigo(id);
+			u.setUser(user);
+			u.setPass(hashPassword(pass));
+			u.setRol(rol);
+			uDAO.update(u);
 			
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
 		}
 		
 	}
@@ -199,19 +209,53 @@ public class UsuariosServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		RequestDispatcher dispatcher;
-		FabricanteDAO fabDAO = new FabricanteDAOImpl();
+		UsuarioDAO uDAO = new UsuarioDAOImpl();
 		String codigo = request.getParameter("codigo");
 		
 		try {
 			
 			int id = Integer.parseInt(codigo);
 		
-		fabDAO.delete(id);
+		uDAO.delete(id);
 			
 		} catch (NumberFormatException nfe) {
 			nfe.printStackTrace();
 		}
 		
 	}
+	
+	/**
+	 * Método que obtiene el hash de una password, por ejemplo, dado password = admin, devuelve:          
+8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+	 * @param password
+	 * @return hash de encriptación de la password
+	 * @throws NoSuchAlgorithmException
+	 */
+	public static String hashPassword(String password ) throws NoSuchAlgorithmException {
+		MessageDigest digest;
+		
+		digest = MessageDigest.getInstance("SHA-256");
+		byte[] encodedhash = digest.digest(
+				password.getBytes(StandardCharsets.UTF_8));
+		
+		return bytesToHex(encodedhash);					
+		
+	}
+	
+	private static String bytesToHex(byte[] byteHash) {
+		
+	    StringBuilder hexString = new StringBuilder(2 * byteHash.length);	  	
+	    for (int i = 0; i < byteHash.length; i++) {
+	        String hex = Integer.toHexString(0xff & byteHash[i]);
+	        if(hex.length() == 1) {
+	            hexString.append('0');
+	        }
+	        hexString.append(hex);
+	    }
+	    
+	    return hexString.toString();
+	    
+	}
+
 	
 }

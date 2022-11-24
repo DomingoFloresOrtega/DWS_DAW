@@ -36,15 +36,6 @@
 							<input type="submit" value="Crear">
 						</form>
 					</div>
-					
-					<div style="position: absolute; left: 45%; top : 39%;">
-					
-						<form action="/tienda_informatica/usuarios">
-							<input type="text" name="filtrar-por-texto"/>
-							<input type="submit" value="Buscar">
-						</form>
-						
-					</div>
 				
 			</div>
 		</div>
@@ -70,18 +61,18 @@
             	if (usuarios.getCodigo() != 0){
     %>
 		<div style="margin-top: 6px;" class="clearfix">
-			<div style="float: left;width: 25%"><%= usuarios.getCodigo()%></div>
-			<div style="float: left;width: 25%"><%= usuarios.getUser()%></div>
-			<div style="float: left;width: 25%"><%= usuarios.getPass()%></div>
-			<div style="float: left;width: 25%"><%= usuarios.getRol()%></div>
+			<div style="float: left;width: 20%"><%= usuarios.getCodigo()%></div>
+			<div style="float: left;width: 20%"><%= usuarios.getUser()%></div>
+			<div style="float: left;width: 20%"><%= usuarios.getPass()%></div>
+			<div style="float: left;width: 20%"><%= usuarios.getRol()%></div>
 			<div style="float: none;width: auto;overflow: hidden;">
-				<form action="/tienda_informatica/productos/<%= usuarios.getCodigo()%>" style="display: inline;">
+				<form action="/tienda_informatica/usuarios/<%= usuarios.getCodigo()%>" style="display: inline;">
     				<input type="submit" value="Ver Detalle" />
 				</form>
-				<form action="/tienda_informatica/productos/editar/<%= usuarios.getCodigo()%>" style="display: inline;">
+				<form action="/tienda_informatica/usuarios/editar/<%= usuarios.getCodigo()%>" style="display: inline;">
     				<input type="submit" value="Editar" />
 				</form>
-				<form action="/tienda_informatica/productos/borrar/" method="post" style="display: inline;">
+				<form action="/tienda_informatica/usuarios/borrar/" method="post" style="display: inline;">
 					<input type="hidden" name="__method__" value="delete"/>
 					<input type="hidden" name="codigo" value="<%= usuarios.getCodigo()%>"/>
     				<input type="submit" value="Eliminar" />
