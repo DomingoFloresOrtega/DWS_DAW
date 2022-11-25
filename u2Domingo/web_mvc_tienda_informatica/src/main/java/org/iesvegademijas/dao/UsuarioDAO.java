@@ -11,6 +11,7 @@ public interface UsuarioDAO {
 	
 	public List<Usuario> getAll();
 	public Optional<Usuario>  find(int id);
+	public Optional<Usuario>  findByName(String user);
 	
 	public void update(Usuario usuario);
 	

@@ -82,6 +82,19 @@ public class UsuariosServlet extends HttpServlet {
 				dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/crear-usuario.jsp");
         												
 			
+			} else if (pathParts.length == 2 && "login".equals(pathParts[1]) ) {
+				UsuarioDAO uDAO = new UsuarioDAOImpl();
+				
+				// GET
+				// /usuarios/login
+				try {
+					dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");  								
+				} catch (NumberFormatException nfe) {
+					nfe.printStackTrace();
+					dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/usuarios.jsp");
+				}
+				
+				
 			} else if (pathParts.length == 2) {
 				UsuarioDAO uDAO = new UsuarioDAOImpl();
 				// GET
@@ -149,6 +162,23 @@ public class UsuariosServlet extends HttpServlet {
 			if (user != "" && pass != "") {
 				uDAO.create(nuevoUser);
 			}		
+			
+		} else if (__method__.equals("xlogin")) {
+			UsuarioDAO uDAO = new UsuarioDAOImpl();
+			for (int i = 0; i < uDAO.getAll().size(); i++) {
+				try {
+					if (request.getParameter("user").equals(uDAO.getAll().get(i).getUser()) 
+							&& hashPassword(request.getParameter("pass")).equals(uDAO.getAll().get(i).getPass())
+							&& uDAO.getAll().get(i).getRol() == "administrador") {
+						String bin = uDAO.getAll().get(i).getPass();
+						
+						
+					}
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
 		} else if (__method__ != null && "put".equalsIgnoreCase(__method__)) {			
 			// Actualizar uno existente
