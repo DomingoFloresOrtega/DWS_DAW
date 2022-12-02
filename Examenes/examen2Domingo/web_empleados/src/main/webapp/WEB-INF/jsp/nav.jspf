@@ -1,0 +1,5 @@
+<nav class="menu">
+		<a href="/web_empleados">HOME</a>
+		<a href="/web_empleados/empleados">Empleados</a>
+		<a href="/web_empleados/departamentos">Departamentos</a>
+	</nav>
