@@ -23,4 +23,8 @@ public class ClienteService {
 		return clienteDAO.getAll();
 		
 	}
+	
+	public void newCliente(Cliente cliente) {
+		clienteDAO.create(cliente);
+	}
 }
