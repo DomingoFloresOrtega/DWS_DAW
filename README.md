@@ -8,7 +8,10 @@ _Este repositorio son trabajos de clase. Cada apartado tiene sus unidades y sus 
 - [Tema 2 (Java Entorno Servidor: JSP, Servlet & JDBC)](https://github.com/DomingoFloresOrtega/DWS_DAW/tree/master/u2Domingo)
 - [Tema 3 (Java Entorno Servidor: Spring Boot - Spring MVC & Thymeleaf)](https://github.com/DomingoFloresOrtega/DWS_DAW/tree/master/u3Domingo)
 
+## Evaluación
+- [Examenes](https://github.com/DomingoFloresOrtega/DWS_DAW/tree/master/Examenes)
+- [Recuperaciones](https://github.com/DomingoFloresOrtega/DWS_DAW/tree/master/Recuperaciones)
+
 ## Anexos
 - [Anexo I (Explicaciones)](https://github.com/DomingoFloresOrtega/DWS_DAW/tree/master/Explicaciones)
-- [Anexo II (Examenes)](https://github.com/DomingoFloresOrtega/DWS_DAW/tree/master/Examenes)
 ---
