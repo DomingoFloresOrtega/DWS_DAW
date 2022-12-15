@@ -47,7 +47,7 @@
 			<hr/>
 		</div>
 
-		<div  th:each="cliente : ${listaClientes}" style="margin-top: 6px;" class="clearfix">
+		<div th:each="cliente : ${listaClientes}" style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 14%" th:text="${cliente.id}">0</div>
 			<div style="float: left;width: 14%" th:text="${cliente.nombre}">nombre</div>
 			<div style="float: left;width: 14%" th:text="${cliente.apellido1}">apellido1</div>
@@ -61,7 +61,7 @@
 				<form th:action="@{/clientes/editar/}+${cliente.id} " style="display: inline;">
     				<input type="submit" value="Editar" />
 				</form>
-				<form th:action="@{/clientes/borrar/__${cliente.}_id_}" method="post" style="display: inline;">					
+				<form th:action="@{/clientes/borrar/__${cliente.id}__}" th:method="post" style="display: inline;">					
     				<input type="submit" value="Eliminar" />
 				</form>
 			</div>
