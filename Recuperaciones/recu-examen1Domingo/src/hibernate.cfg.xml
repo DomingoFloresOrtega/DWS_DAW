@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">d0m1ng0@</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.56.101:3306/ventas</property>
+        <property name="hibernate.connection.username">domingo</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">none</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        
+        <mapping resource="org/iesvdm/streams/Cliente.hbm.xml"/>
+        <mapping resource="org/iesvdm/streams/Comercial.hbm.xml"/>
+        <mapping resource="org/iesvdm/streams/Pedido.hbm.xml"/>
+        
+    </session-factory>
+</hibernate-configuration>

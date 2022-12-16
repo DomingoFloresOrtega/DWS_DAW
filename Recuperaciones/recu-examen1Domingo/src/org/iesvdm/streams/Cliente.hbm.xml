@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 15 dic. 2022 23:59:33 by Hibernate Tools 5.6.9.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="ventas" name="org.iesvdm.streams.Cliente" optimistic-lock="none" table="cliente">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="nombre" type="string">
+            <column length="100" name="nombre" not-null="true"/>
+        </property>
+        <property name="apellido1" type="string">
+            <column length="100" name="apellido1" not-null="true"/>
+        </property>
+        <property name="apellido2" type="string">
+            <column length="100" name="apellido2"/>
+        </property>
+        <property name="ciudad" type="string">
+            <column length="100" name="ciudad"/>
+        </property>
+        <property name="categoría" type="java.lang.Integer">
+            <column name="categoría"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="pedidos" table="pedido">
+            <key>
+                <column name="id_cliente" not-null="true"/>
+            </key>
+            <one-to-many class="org.iesvdm.streams.Pedido"/>
+        </set>
+    </class>
+</hibernate-mapping>
