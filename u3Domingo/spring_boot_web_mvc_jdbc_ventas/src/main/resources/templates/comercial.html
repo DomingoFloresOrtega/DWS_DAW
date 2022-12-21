@@ -48,10 +48,10 @@
 
 		<div  th:each="comercial : ${listaComerciales}" style="margin-top: 6px;" class="clearfix">
 			<div style="float: left;width: 14%" th:text="${comercial.id}">0</div>
-			<div style="float: left;width: 14%" th:text="${comercial.nombre}">nombre</div>
-			<div style="float: left;width: 14%" th:text="${comercial.apellido1}">apellido1</div>
-			<div style="float: left;width: 14%" th:text="${comercial.apellido2 ?: '&nbsp;'}">apellido2</div>
-			<div style="float: left;width: 14%" th:text="${comercial.comisión}">ciudad</div>
+			<div style="float: left;width: 14%" th:text="${comercial.nombre}">Nombre</div>
+			<div style="float: left;width: 14%" th:text="${comercial.apellido1}">Apellido1</div>
+			<div style="float: left;width: 14%" th:text="${comercial.apellido2 ?: '&nbsp;'}">Apellido2</div>
+			<div style="float: left;width: 14%" th:text="${comercial.comision}">Comisión</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<form th:action="@{/comercial/__${comercial.id}__}" style="display: inline;">
     				<input type="submit" value="Ver Detalle" />
@@ -59,7 +59,7 @@
 				<form th:action="@{/comercial/editar/}+${comercial.id} " style="display: inline;">
     				<input type="submit" value="Editar" />
 				</form>
-				<form th:action="@{/comercial/borrar/__${comercial.}_id_}" method="post" style="display: inline;">					
+				<form th:action="@{/comercial/borrar/__${comercial.id}__}" method="post" style="display: inline;">					
     				<input type="submit" value="Eliminar" />
 				</form>
 			</div>
