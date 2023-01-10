@@ -18,7 +18,7 @@
 	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
-				<h1>Nuevo Cliente</h1>
+				<h1 th:text=#{newcli}></h1>
 			</div>
 			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
 				
@@ -29,32 +29,27 @@
 		</div>
 		<div class="clearfix">
 			<form th:action="@{/clientes/crear}" th:object="${cliente}" th:method="post">
-				<div style="float: left;width: 25%">
-					Nombre
+				<div style="float: left;width: 25%" th:text=#{nombre}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{nombre}" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Apellido 1
+				<div style="float: left;width: 25%" th:text=#{ape1}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{apellido1}" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Apellido 2
+				<div style="float: left;width: 25%" th:text=#{ape2}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{apellido2}" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Ciudad
+				<div style="float: left;width: 25%" th:text=#{ciudad}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{ciudad}" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Categoria
+				<div style="float: left;width: 25%" th:text=#{categoria}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{categoria}" />
