@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
+import org.iesvdm.modelo.Stat;
 import org.iesvdm.service.ComercialService;
 import org.iesvdm.service.PedidoService;
+import org.iesvdm.service.StatService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +27,15 @@ public class ComercialController {
 	
 	private ComercialService comercialService;
 	private PedidoService pedidoService;
+	private StatService statsService;
 	
 	//Se utiliza inyección automática por constructor del framework Spring.
 	//Por tanto, se puede omitir la anotación Autowired
 	//@Autowired
-	public ComercialController(ComercialService comercialService, PedidoService pedidoService) {
+	public ComercialController(ComercialService comercialService, PedidoService pedidoService, StatService statsService) {
 		this.comercialService = comercialService;
 		this.pedidoService = pedidoService;
+		this.statsService = statsService;
 	}
 	
 	//@RequestMapping(value = "/comercial", method = RequestMethod.GET)
@@ -52,9 +56,11 @@ public class ComercialController {
 		
 		Comercial comercial = comercialService.one(id);
 		List<Pedido> listaPedidos = pedidoService.listAll(id);
+		List<Stat> listaStats = statsService.listAll(id);
 		
 		model.addAttribute("comercial", comercial);
 		model.addAttribute("listaPedidos", listaPedidos);
+		model.addAttribute("listaStats", listaStats);
 		
 		return "detalle-comercial";
 		
