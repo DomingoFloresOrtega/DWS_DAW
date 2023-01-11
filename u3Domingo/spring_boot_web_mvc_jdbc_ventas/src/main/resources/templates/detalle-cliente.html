@@ -35,38 +35,32 @@
 			<hr/>
 		</div>
 		<div class="clearfix">
-				<div style="float: left;width: 25%">
-					Codigo
+				<div style="float: left;width: 25%" th:text=#{id}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${cliente.id}" readonly="readonly" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Nombre
+				<div style="float: left;width: 25%" th:text=#{nombre}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${cliente.nombre}" readonly="readonly" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Apellido 1
+				<div style="float: left;width: 25%" th:text=#{ape1}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${cliente.apellido1}" readonly="readonly" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Apellido 2
+				<div style="float: left;width: 25%" th:text=#{ape2}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${cliente.apellido2}" readonly="readonly" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Ciudad
+				<div style="float: left;width: 25%" th:text=#{ciudad}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${cliente.ciudad}" readonly="readonly" />
 				</div> 
-				<div style="float: left;width: 25%">
-					Categoria
+				<div style="float: left;width: 25%" th:text=#{categoria}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${cliente.categoria}" readonly="readonly" />
