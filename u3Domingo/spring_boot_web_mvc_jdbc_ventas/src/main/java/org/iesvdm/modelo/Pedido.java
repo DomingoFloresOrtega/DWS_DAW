@@ -18,5 +18,8 @@ public class Pedido {
 	private String fecha;
 	private int idCliente;
 	private int idComercial;
+	private String nombreCliente;
+	private String ape1Cliente;
+	private String ape2Cliente;
 	
 }

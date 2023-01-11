@@ -19,9 +19,9 @@ public class PedidoService {
 		this.pedidosDAO = pedidosDAO;
 	}
 	
-	public List<Pedido> listAll() {
+	public List<Pedido> listAll(int id) {
 		
-		return pedidosDAO.getAll();
+		return pedidosDAO.getAll(id);
 		
 	}
 }

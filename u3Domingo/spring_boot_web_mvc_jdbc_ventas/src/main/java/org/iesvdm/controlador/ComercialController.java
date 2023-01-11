@@ -29,8 +29,9 @@ public class ComercialController {
 	//Se utiliza inyección automática por constructor del framework Spring.
 	//Por tanto, se puede omitir la anotación Autowired
 	//@Autowired
-	public ComercialController(ComercialService comercialService) {
+	public ComercialController(ComercialService comercialService, PedidoService pedidoService) {
 		this.comercialService = comercialService;
+		this.pedidoService = pedidoService;
 	}
 	
 	//@RequestMapping(value = "/comercial", method = RequestMethod.GET)
@@ -50,7 +51,7 @@ public class ComercialController {
 	public String detalle(Model model, @PathVariable Integer id ) {
 		
 		Comercial comercial = comercialService.one(id);
-		List<Pedido> listaPedidos = pedidoService.listAll();
+		List<Pedido> listaPedidos = pedidoService.listAll(id);
 		
 		model.addAttribute("comercial", comercial);
 		model.addAttribute("listaPedidos", listaPedidos);

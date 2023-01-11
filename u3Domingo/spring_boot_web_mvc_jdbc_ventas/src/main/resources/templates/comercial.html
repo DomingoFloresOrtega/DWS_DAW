@@ -54,13 +54,13 @@
 			<div style="float: left;width: 14%" th:text="${comercial.comision}">Comisión</div>
 			<div style="float: none;width: auto;overflow: hidden;">
 				<form th:action="@{/comercial/__${comercial.id}__}" style="display: inline;">
-    				<input type="submit" value="#{detalle}" />
+    				<input type="submit" value="Ver Detalle" />
 				</form>
 				<form th:action="@{/comercial/editar/}+${comercial.id} " style="display: inline;">
-    				<input type="submit" value="#{editar}" />
+    				<input type="submit" value="Editar" />
 				</form>
 				<form th:action="@{/comercial/borrar/__${comercial.id}__}" method="post" style="display: inline;">					
-    				<input type="submit" value="@#{borrar}" />
+    				<input type="submit" value="Eliminar" />
 				</form>
 			</div>
 		</div>

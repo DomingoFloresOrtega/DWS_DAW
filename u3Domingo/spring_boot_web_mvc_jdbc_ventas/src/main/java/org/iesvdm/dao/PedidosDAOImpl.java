@@ -23,11 +23,11 @@ public class PedidosDAOImpl implements PedidosDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public List<Pedido> getAll() {
+	public List<Pedido> getAll(int id) {
 
-		List<Pedido> listPed = jdbcTemplate.query("SELECT * FROM pedido",
+		List<Pedido> listPed = jdbcTemplate.query("SELECT * FROM pedido p JOIN cliente c ON p.id_cliente = c.id WHERE p.id_comercial = ?",
 				(rs, rowNum) -> new Pedido(rs.getInt("id"), rs.getDouble("total"), rs.getString("fecha"),
-						rs.getInt("id_cliente"), rs.getInt("id_comercial")));
+						rs.getInt("id_cliente"), rs.getInt("id_comercial"), rs.getString("nombre"), rs.getString("apellido1"),rs.getString("apellido2")), id);
 
 		log.info("Devueltos {} registros.", listPed.size());
 

@@ -7,5 +7,5 @@ import org.iesvdm.modelo.Pedido;
 
 public interface PedidosDAO {
 	
-	public List<Pedido> getAll();
+	public List<Pedido> getAll(int id);
 }
