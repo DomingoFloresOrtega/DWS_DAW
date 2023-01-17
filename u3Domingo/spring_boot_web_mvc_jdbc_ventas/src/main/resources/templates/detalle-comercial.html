@@ -98,7 +98,12 @@
 								<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.fecha}">Fecha</div>
 								<a th:href="@{/clientes/__${pedido.idCliente}__}"><div style="float: left;width: 15%;background-color: green;" th:text="${pedido.nombreCliente}">Fech</div></a>
 								<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.ape1Cliente}">Fec</div>
-								<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.ape2Cliente}">Fe</div>
+								<th:block th:if="${pedido.ape2Cliente} != null">
+									<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.ape2Cliente}">Fe</div>
+								</th:block>
+								<th:block th:if="${pedido.ape2Cliente} == null">
+									<div style="float: left;width: 15%;background-color: green;" th:text="SIN">Fe</div>
+								</th:block>
 								<div style="float: none;width: auto;overflow: hidden;"></div>
 							</th:block>
 							<th:block th:if="${pedido.id} == ${sMin.id}">
@@ -107,7 +112,12 @@
 								<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.fecha}">Fecha</div>
 								<a th:href="@{/clientes/__${pedido.idCliente}__}"><div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.nombreCliente}">Fech</div></a>
 								<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.ape1Cliente}">Fec</div>
-								<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.ape2Cliente}">Fe</div>
+								<th:block th:if="${pedido.ape2Cliente} != null">
+									<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.ape2Cliente}">Fe</div>
+								</th:block>
+								<th:block th:if="${pedido.ape2Cliente} == null">
+									<div style="float: left;width: 15%;background-color: yellow;" th:text="SIN">Fe</div>
+								</th:block>
 								<div style="float: none;width: auto;overflow: hidden;"></div>
 							</th:block>
 							<th:block th:if="${pedido.id} != ${sMax.id}">
@@ -117,7 +127,12 @@
 									<div style="float: left;width: 15%" th:text="${pedido.fecha}">Fecha</div>
 									<a th:href="@{/clientes/__${pedido.idCliente}__}"><div style="float: left;width: 15%" th:text="${pedido.nombreCliente}">Fech</div></a>
 									<div style="float: left;width: 15%" th:text="${pedido.ape1Cliente}">Fec</div>
-									<div style="float: left;width: 15%" th:text="${pedido.ape2Cliente}">Fe</div>
+									<th:block th:if="${pedido.ape2Cliente} != null">
+										<div style="float: left;width: 15%" th:text="${pedido.ape2Cliente}">Fe</div>
+									</th:block>
+									<th:block th:if="${pedido.ape2Cliente} == null">
+										<div style="float: left;width: 15%;background-color: green;" th:text="SIN">Fe</div>
+									</th:block>
 									<div style="float: none;width: auto;overflow: hidden;"></div>
 								</th:block>
 							</th:block>
@@ -145,7 +160,12 @@
 				<div style="float: left;width: 15%;" th:text="${cli.id}">ID</div>
 				<div style="float: left;width: 15%;" th:text="${cli.nombre}">Total</div>
 				<div style="float: left;width: 15%;" th:text="${cli.apellido1}">Fecha</div>
-				<div style="float: left;width: 15%;" th:text="${cli.apellido2}">Fech</div></a>
+				<th:block th:if="${cli.apellido2} != null">
+					<div style="float: left;width: 15%;" th:text="${cli.apellido2}">Fech</div></a>
+				</th:block>
+				<th:block th:if="${cli.apellido2} == null">
+					<div style="float: left;width: 15%;" th:text="SIN">Fech</div></a>
+				</th:block>
 				<div style="float: left;width: 15%;" th:text="${cli.ciudad}">Fec</div>
 				<div style="float: left;width: 15%;" th:text="${cli.categoria}">Fe</div>
 				<div style="float: none;width: auto;overflow: hidden;"></div>
