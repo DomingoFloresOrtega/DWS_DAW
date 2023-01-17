@@ -2,6 +2,7 @@ package org.iesvdm.controlador;
 
 import java.util.List;
 
+import org.iesvdm.modelo.Cliente;
 import org.iesvdm.modelo.Comercial;
 import org.iesvdm.modelo.Pedido;
 import org.iesvdm.modelo.Stat;
@@ -57,10 +58,16 @@ public class ComercialController {
 		Comercial comercial = comercialService.one(id);
 		List<Pedido> listaPedidos = pedidoService.listAll(id);
 		List<Stat> listaStats = statsService.listAll(id);
+		List<Stat> listaStatsMax = statsService.listMaxPed(id);
+		List<Stat> listaStatsMin = statsService.listMinPed(id);
+		List<Cliente> listaStatsCli = statsService.listClientes(id);
 		
 		model.addAttribute("comercial", comercial);
 		model.addAttribute("listaPedidos", listaPedidos);
 		model.addAttribute("listaStats", listaStats);
+		model.addAttribute("listaStatMax", listaStatsMax);
+		model.addAttribute("listaStatMin", listaStatsMin);
+		model.addAttribute("listaStatCli", listaStatsCli);
 		
 		return "detalle-comercial";
 		
