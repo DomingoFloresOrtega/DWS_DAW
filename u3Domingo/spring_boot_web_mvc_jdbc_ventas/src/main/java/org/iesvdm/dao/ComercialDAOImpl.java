@@ -39,7 +39,7 @@ public class ComercialDAOImpl implements ComercialDAO {
 			ps.setString(idx++, comercial.getNombre());
 			ps.setString(idx++, comercial.getApellido1());
 			ps.setString(idx++, comercial.getApellido2());
-			ps.setFloat(idx++, comercial.getComision());
+			ps.setBigDecimal(idx++, comercial.getComision());
 			return ps;
 		}, keyHolder);
 
@@ -54,7 +54,7 @@ public class ComercialDAOImpl implements ComercialDAO {
 
 		List<Comercial> listCom = jdbcTemplate.query("SELECT * FROM comercial",
 				(rs, rowNum) -> new Comercial(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"),
-						rs.getString("apellido2"), rs.getFloat("comisión")));
+						rs.getString("apellido2"), rs.getBigDecimal("comisión")));
 
 		log.info("Devueltos {} registros.", listCom.size());
 
@@ -65,7 +65,7 @@ public class ComercialDAOImpl implements ComercialDAO {
 	public Optional<Comercial> find(int id) {
 		Comercial com = jdbcTemplate.queryForObject("SELECT * FROM comercial WHERE id = ?",
 				(rs, rowNum) -> new Comercial(rs.getInt("id"), rs.getString("nombre"), rs.getString("apellido1"),
-						rs.getString("apellido2"), rs.getFloat("comisión")),
+						rs.getString("apellido2"), rs.getBigDecimal("comisión")),
 				id);
 
 		if (com != null) {

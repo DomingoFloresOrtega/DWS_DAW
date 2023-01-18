@@ -33,26 +33,46 @@
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{nombre}" />
+					<ul th:if="${#fields.hasErrors('nombre')}">
+        			     <li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error" />
+    			     </ul>
+					
 				</div> 
 				<div style="float: left;width: 25%" th:text=#{ape1}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{apellido1}" />
+					<ul th:if="${#fields.hasErrors('apellido1')}">
+        			     <li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error" />
+    			     </ul>
+					
 				</div> 
 				<div style="float: left;width: 25%" th:text=#{ape2}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{apellido2}" />
+					<ul th:if="${#fields.hasErrors('apellido2')}">
+        			     <li th:each="err : ${#fields.errors('apellido2')}" th:text="${err}" class="error" />
+    			     </ul>
+					
 				</div> 
 				<div style="float: left;width: 25%" th:text=#{ciudad}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{ciudad}" />
+					<ul th:if="${#fields.hasErrors('ciudad')}">
+        			     <li th:each="err : ${#fields.errors('ciudad')}" th:text="${err}" class="error" />
+    			     </ul>
+					
 				</div> 
 				<div style="float: left;width: 25%" th:text=#{categoria}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="*{categoria}" />
+					<ul th:if="${#fields.hasErrors('categoria')}">
+        			     <li th:each="err : ${#fields.errors('categoria')}" th:text="${err}" class="error" />
+    			     </ul>
+					
 				</div> 
 				<input type="submit" value="Crear" />
 			</form>

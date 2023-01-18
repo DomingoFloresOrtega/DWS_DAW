@@ -37,9 +37,9 @@ public class Cliente {
 	@Size(max=50, message = "Ciudad como máximo de 50 caracteres.")
 	private String ciudad;
 	
-	@NotBlank(message = "Por favor, introduzca categoria.")
-	@Size(min=4, message = "Categoria al menos de 4 caracteres.")
-	@Size(max=30, message = "Categoria como máximo de 10 caracteres.")
+	@NotNull(message = "Por favor, introduzca categoria.")
+	@Min(value=100, message="Categoria como minimo de 100 caracteres")
+	@Max(value=1000, message="Categoria como maximo de 1000 caracteres")
 	private int categoria;
 	
 }

@@ -8,6 +8,7 @@ import org.iesvdm.modelo.Cliente;
 import org.iesvdm.service.ClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
+
+import jakarta.validation.Valid;
 
 @Controller
 //Se puede fijar ruta base de las peticiones de este controlador.
@@ -55,17 +58,14 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/clientes/crear") //Al no tener ruta base para el controlador, cada método tiene que tener la ruta completa
-	public String crear(Model model) {
-		
-		Cliente cliente = new Cliente();
-		model.addAttribute("cliente", cliente);
+	public String crear(@ModelAttribute("cliente") Cliente cliente, Model model) {
 		
 		return "crear-cliente";
 		
 	}
 	
 	@PostMapping({"/clientes/crear","/clientes/crear/"})
-	public RedirectView submitCrear(@ModelAttribute("cliente") Cliente cliente) {
+	public RedirectView submitCrear(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult bindingResulted) {
 		
 		clienteService.newCliente(cliente);
 				
