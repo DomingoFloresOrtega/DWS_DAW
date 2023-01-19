@@ -20,11 +20,13 @@ public class Comercial {
 	private int id;
 	
 	@NotBlank(message = "Por favor, introduzca nombre.")
-	@Size(max=30, message = "Nombre como máximo de 30 caracteres.")
+	@Size(min=4, message = "{error.min}")
+	@Size(max=30, message = "{error.max}")
 	private String nombre;
 	
 	@NotBlank(message = "Por favor, introduzca apellido 1.")
-	@Size(max=30, message = "Nombre como máximo de 30 caracteres.")
+	@Size(min=4, message = "{error.min}")
+	@Size(max=30, message = "{error.max}")
 	private String apellido1;
 	private String apellido2;
 	

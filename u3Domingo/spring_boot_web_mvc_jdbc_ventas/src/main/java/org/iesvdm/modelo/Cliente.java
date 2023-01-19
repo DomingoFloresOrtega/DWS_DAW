@@ -21,25 +21,25 @@ public class Cliente {
 	
 	private int id;
 	
-	@NotBlank(message = "Por favor, introduzca nombre.")
-	@Size(min=4, message = "Nombre al menos de 4 caracteres.")
-	@Size(max=30, message = "Nombre como máximo de 30 caracteres.")
+	@NotBlank(message = "{error.nombre}")
+	@Size(min=4, message = "{error.min}")
+	@Size(max=30, message = "{error.max}")
 	private String nombre;
 	
-	@NotBlank(message = "Por favor, introduzca apellido 1.")
-	@Size(min=4, message = "Apellido 1 al menos de 4 caracteres.")
-	@Size(max=30, message = "Apellido 2 como máximo de 30 caracteres.")
+	@NotBlank(message = "{error.ape1}")
+	@Size(min=4, message = "{error.min}")
+	@Size(max=30, message = "{error.max}")
 	private String apellido1;
 	private String apellido2;
 	
-	@NotBlank(message = "Por favor, introduzca ciudad.")
-	@Size(min=4, message = "Ciudad al menos de 4 caracteres.")
-	@Size(max=50, message = "Ciudad como máximo de 50 caracteres.")
+	@NotBlank(message = "{error.ciudad}")
+	@Size(min=4, message = "{error.min}")
+	@Size(max=30, message = "{error.max}")
 	private String ciudad;
 	
-	@NotNull(message = "Por favor, introduzca categoria.")
-	@Min(value=100, message="Categoria como minimo de 100 caracteres")
-	@Max(value=1000, message="Categoria como maximo de 1000 caracteres")
+	@NotNull(message = "{error.categoria}")
+	@Min(value=100, message="{error.minCat}")
+	@Max(value=1000, message="{error.maxCat}")
 	private int categoria;
 	
 }
