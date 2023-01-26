@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Comercial</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 <style>
-.clearfix::after {
-	content: "";
-	display: block;
-	clear: both;
+.error {
+	color: red;
 }
 
 </style>
@@ -15,46 +15,69 @@
 <body>
 <body>
 
-	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
-		<div class="clearfix">
-			<div style="float: left; width: 50%">
+	<div class="container-sm">
+		<div class="row mt-4">
+			<div class="col">
 				<h1 th:text=#{newcom}></h1>
 			</div>
-			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-				
+			
+			<div class="col">
+				<form action="/comercial" >
+					<input type="submit" class="btn btn-success" value="Volver" />
+				</form>
 			</div>
 		</div>
-		<div class="clearfix">
-			<hr/>
-		</div>
-		<div class="clearfix">
+		
+		<hr/>
+		
+		<div class="row">
 			<form th:action="@{/comercial/crear}" th:object="${comercial}" th:method="post">
-				<div style="float: left;width: 25%" th:text=#{nombre}>
+				<div class="d-flex flex-row">
+					<div th:text=#{nombre}>
+					</div>
+					<div class="ms-3">
+						<input th:field="*{nombre}" />
+						<ul th:if="${#fields.hasErrors('nombre')}">
+        			     	<li th:each="err : ${#fields.errors('nombre')}" th:text="${err}" class="error" />
+    			     	</ul>
+					</div> 
 				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
-					<input th:field="*{nombre}" />
-				</div> 
-				<div style="float: left;width: 25%" th:text=#{ape1}>
+				<div class="d-flex flex-row">
+					<div th:text=#{ape1}>
+					</div>
+					<div class="ms-3">
+						<input th:field="*{apellido1}" />
+						<ul th:if="${#fields.hasErrors('apellido1')}">
+        			     	<li th:each="err : ${#fields.errors('apellido1')}" th:text="${err}" class="error" />
+    			     	</ul>
+					</div> 
 				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
-					<input th:field="*{apellido1}" />
-				</div> 
-				<div style="float: left;width: 25%" th:text=#{ape2}>
+				
+				<div class="d-flex flex-start">
+					<div th:text=#{ape2}>
+					</div>
+					<div class="ms-3">
+						<input th:field="*{apellido2}" />
+						<ul th:if="${#fields.hasErrors('apellido2')}">
+        			     	<li th:each="err : ${#fields.errors('apellido2')}" th:text="${err}" class="error" />
+    			    	</ul>
+					</div> 
 				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
-					<input th:field="*{apellido2}" />
-				</div> 
-				<div style="float: left;width: 25%" th:text=#{comision}>
-				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
-					<input th:field="*{comision}" />
+				
+				<div class="d-flex flex-start">
+					<div th:text=#{comision}>
+					</div>
+					<div class="ms-3">
+						<input th:field="*{comision}" />
+						<ul th:if="${#fields.hasErrors('comision')}">
+        			     	<li th:each="err : ${#fields.errors('comision')}" th:text="${err}" class="error" />
+    			     	</ul>
+					</div>
 				</div>
 				<input type="submit" value="Crear" />
 			</form>
 		</div>
-		<div class="clearfix">
-			<hr/>
-		</div>
+		<hr/>
 	</div>
 </body>
 </body>

@@ -3,175 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <title>Comercial</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}">
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 <style>
 .clearfix::after {
 	content: "";
 	display: block;
 	clear: both;
 }
-
 </style>
 </head>
 <body>
 <body>
-
-	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
-		<div class="clearfix">
-			<div style="float: left; width: 50%">
+	<div class="container-sm">
+		<div class="row mt-4">
+			<div class="col">
 				<h1 th:text=#{detcom}></h1>
 			</div>
-			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
-				
-				<div style="position: absolute; left: 39%; top : 39%;">
-					
-						<form action="/comercial" >
-							<input type="submit" value="Volver" />
-						</form>
-					</div>
-				
+
+			<div class="col">
+				<form action="/comercial">
+					<input type="submit" class="btn btn-success" value="Volver" />
+				</form>
 			</div>
 		</div>
+
+		<hr />
+
 		<div class="clearfix">
-			<hr/>
-		</div>
-		<div class="clearfix">
-				<div style="float: left;width: 25%" th:text=#{id}>
-				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
+			<div class="d-flex flex-row">
+				<div th:text=#{id}></div>
+				<div class="ms-3">
 					<input th:field="${comercial.id}" readonly="readonly" />
-				</div> 
-				<div style="float: left;width: 25%" th:text=#{nombre}>
 				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
+			</div>
+
+			<div class="d-flex flex-start">
+				<div th:text=#{nombre}></div>
+				<div class="ms-3">
 					<input th:field="${comercial.nombre}" readonly="readonly" />
-				</div> 
-				<div style="float: left;width: 25%" th:text=#{ape1}>
 				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
+			</div>
+
+			<div class="d-flex flex-start">
+				<div th:text=#{ape1}></div>
+				<div class="ms-3">
 					<input th:field="${comercial.apellido1}" readonly="readonly" />
-				</div> 
-				<div style="float: left;width: 25%" th:text=#{ape2}>
 				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
+			</div>
+
+			<div class="d-flex flex-start">
+				<div th:text=#{ape2}></div>
+				<div class="ms-3">
 					<input th:field="${comercial.apellido2}" readonly="readonly" />
-				</div> 
-				<div style="float: left;width: 25%" th:text=#{comision}>
 				</div>
-				<div style="float: none;width: auto;overflow: hidden;">
+			</div>
+
+			<div class="d-flex flex-start">
+				<div th:text=#{comision}></div>
+				<div class="ms-3">
 					<input th:field="${comercial.comision}" readonly="readonly" />
-				</div> 
-		</div>
-		<div class="clearfix">
-			<hr/>
-		</div>
-		
-		<div class="clearfix">
-			<div th:each="stat : ${listaStats}" style="margin-top: 6px;" class="clearfix">
-					<div style="float: left;width: 14%" th:text=#{totalped}></div>
-				<div style="float: left;width: 14%" th:text="${stat.suma}"></div>
-				<div style="float: left;width: 14%" th:text=#{mediaped}></div>
-				<div style="float: left;width: 14%" th:text="${stat.media}"></div>
-				<div style="float: none;width: auto;overflow: hidden;">
+				</div>
 			</div>
 		</div>
-		
-		<div class="clearfix">
-			<hr/>
+
+		<hr />
+
+		<div th:each="stat : ${listaStats}" class="row">
+			<div class="col" th:text=#{totalped}></div>
+			<div class="col" th:text="${stat.suma}"></div>
+			<div class="col" th:text=#{mediaped}></div>
+			<div class="col" th:text="${stat.media}"></div>
 		</div>
-		
-		<div class="clearfix">
-			<div style="float: left;width: 15%" th:text=#{id}></div>
-			<div style="float: left;width: 15%" th:text=#{precio}></div>
-			<div style="float: left;width: 15%" th:text=#{fecha}></div>
-			<div style="float: left;width: 15%" th:text=#{nombre}></div>
-			<div style="float: left;width: 15%" th:text=#{ape1}></div>
-			<div style="float: left;width: auto" th:text=#{ape2}></div>
+
+		<hr />
+
+		<div class="row">
+			<div class="col" th:text=#{id}></div>
+			<div class="col" th:text=#{precio}></div>
+			<div class="col" th:text=#{fecha}></div>
+			<div class="col" th:text=#{nombre}></div>
+			<div class="col" th:text=#{ape1}></div>
+			<div class="col" th:text=#{ape2}></div>
 		</div>
-		<div class="clearfix">
-			<div th:each="stat : ${listaStats}" style="margin-top: 6px;" class="clearfix">
-				<div th:each="sMin : ${listaStatMin}" style="margin-top: 6px;" class="clearfix">
-					<div th:each="sMax : ${listaStatMax}" style="margin-top: 6px;" class="clearfix">
-						<div th:each="pedido : ${listaPedidos}" style="margin-top: 6px;" class="clearfix">
-							<th:block th:if="${pedido.id} == ${sMax.id}">
-								<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.id}">ID</div>
-								<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.total}">Total</div>
-								<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.fecha}">Fecha</div>
-								<a th:href="@{/clientes/__${pedido.idCliente}__}"><div style="float: left;width: 15%;background-color: green;" th:text="${pedido.nombreCliente}">Fech</div></a>
-								<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.ape1Cliente}">Fec</div>
+
+		<div th:each="stat : ${listaStats}" class="row">
+			<div th:each="sMin : ${listaStatMin}" class="row">
+				<div th:each="sMax : ${listaStatMax}" class="row">
+					<div th:each="pedido : ${listaPedidos}" class="row">
+						<th:block th:if="${pedido.id} == ${sMax.id}">
+							<div class="col" style="background-color: green;"
+								th:text="${pedido.id}">ID</div>
+							<div class="col" style="background-color: green;"
+								th:text="${pedido.total}">Total</div>
+							<div class="col" style="background-color: green;"
+								th:text="${pedido.fecha}">Fecha</div>
+							<a class="col" style="background-color: green;"
+								th:href="@{/clientes/__${pedido.idCliente}__}"><div
+									class="col" style="background-color: green;"
+									th:text="${pedido.nombreCliente}">Fech</div></a>
+							<div class="col" style="background-color: green;"
+								th:text="${pedido.ape1Cliente}">Fec</div>
+							<th:block th:if="${pedido.ape2Cliente} != null">
+								<div class="col" style="background-color: green;"
+									th:text="${pedido.ape2Cliente}">Fe</div>
+							</th:block>
+							<th:block th:if="${pedido.ape2Cliente} == null">
+								<div class="col" style="background-color: green;" th:text="SIN">Fe</div>
+							</th:block>
+						</th:block>
+
+						<th:block th:if="${pedido.id} == ${sMin.id}">
+							<div class="col" style="background-color: yellow;"
+								th:text="${pedido.id}">ID</div>
+							<div class="col" style="background-color: yellow;"
+								th:text="${pedido.total}">Total</div>
+							<div class="col" style="background-color: yellow;"
+								th:text="${pedido.fecha}">Fecha</div>
+							<a class="col" style="background-color: yellow;"
+								th:href="@{/clientes/__${pedido.idCliente}__}"><div
+									class="col" style="background-color: yellow;"
+									th:text="${pedido.nombreCliente}">Fech</div></a>
+							<div class="col" style="background-color: yellow;"
+								th:text="${pedido.ape1Cliente}">Fec</div>
+							<th:block th:if="${pedido.ape2Cliente} != null">
+								<div class="col" style="background-color: yellow;"
+									th:text="${pedido.ape2Cliente}">Fe</div>
+							</th:block>
+							<th:block th:if="${pedido.ape2Cliente} == null">
+								<div class="col" style="background-color: yellow;" th:text="SIN">Fe</div>
+							</th:block>
+						</th:block>
+						<th:block th:if="${pedido.id} != ${sMax.id}">
+							<th:block th:if="${pedido.id} != ${sMin.id}">
+								<div class="col" th:text="${pedido.id}">ID</div>
+								<div class="col" th:text="${pedido.total}">Total</div>
+								<div class="col" th:text="${pedido.fecha}">Fecha</div>
+								<a class="col" th:href="@{/clientes/__${pedido.idCliente}__}"><div
+										th:text="${pedido.nombreCliente}">Fech</div></a>
+								<div class="col" th:text="${pedido.ape1Cliente}">Fec</div>
 								<th:block th:if="${pedido.ape2Cliente} != null">
-									<div style="float: left;width: 15%;background-color: green;" th:text="${pedido.ape2Cliente}">Fe</div>
+									<div class="col" th:text="${pedido.ape2Cliente}">Fe</div>
 								</th:block>
 								<th:block th:if="${pedido.ape2Cliente} == null">
-									<div style="float: left;width: 15%;background-color: green;" th:text="SIN">Fe</div>
-								</th:block>
-								<div style="float: none;width: auto;overflow: hidden;"></div>
-							</th:block>
-							<th:block th:if="${pedido.id} == ${sMin.id}">
-								<div style="float: left;width: 15%;background-color: yellow;" th:text="${pedido.id}">ID</div>
-								<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.total}">Total</div>
-								<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.fecha}">Fecha</div>
-								<a th:href="@{/clientes/__${pedido.idCliente}__}"><div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.nombreCliente}">Fech</div></a>
-								<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.ape1Cliente}">Fec</div>
-								<th:block th:if="${pedido.ape2Cliente} != null">
-									<div style="float: left;width: 15%;background-color: yellow" th:text="${pedido.ape2Cliente}">Fe</div>
-								</th:block>
-								<th:block th:if="${pedido.ape2Cliente} == null">
-									<div style="float: left;width: 15%;background-color: yellow;" th:text="SIN">Fe</div>
-								</th:block>
-								<div style="float: none;width: auto;overflow: hidden;"></div>
-							</th:block>
-							<th:block th:if="${pedido.id} != ${sMax.id}">
-								<th:block th:if="${pedido.id} != ${sMin.id}">
-									<div style="float: left;width: 15%" th:text="${pedido.id}">ID</div>
-									<div style="float: left;width: 15%" th:text="${pedido.total}">Total</div>
-									<div style="float: left;width: 15%" th:text="${pedido.fecha}">Fecha</div>
-									<a th:href="@{/clientes/__${pedido.idCliente}__}"><div style="float: left;width: 15%" th:text="${pedido.nombreCliente}">Fech</div></a>
-									<div style="float: left;width: 15%" th:text="${pedido.ape1Cliente}">Fec</div>
-									<th:block th:if="${pedido.ape2Cliente} != null">
-										<div style="float: left;width: 15%" th:text="${pedido.ape2Cliente}">Fe</div>
-									</th:block>
-									<th:block th:if="${pedido.ape2Cliente} == null">
-										<div style="float: left;width: 15%;background-color: green;" th:text="SIN">Fe</div>
-									</th:block>
-									<div style="float: none;width: auto;overflow: hidden;"></div>
+									<div class="col" th:text="SIN">Fe</div>
 								</th:block>
 							</th:block>
-						</div>
+						</th:block>
 					</div>
+				</div>
 			</div>
 		</div>
+
+		<hr/>
+	
+		<div class="row">
+			<div class="col" th:text=#{id}></div>
+			<div class="col" th:text=#{nombre}></div>
+			<div class="col" th:text=#{ape1}></div>
+			<div class="col" th:text=#{ape2}></div>
+			<div class="col" th:text=#{ciudad}></div>
+			<div class="col" th:text=#{categoria}></div>
 		</div>
-		
-		<div class="clearfix">
-			<hr/>
+
+		<div th:each="cli : ${listaStatCli}" class="row">
+			<div class="col" th:text="${cli.id}">ID</div>
+			<div class="col" th:text="${cli.nombre}">Total</div>
+			<div class="col" th:text="${cli.apellido1}">Fecha</div>
+			<th:block th:if="${cli.apellido2} != null">
+				<div class="col" th:text="${cli.apellido2}">Fech</div>
+			</th:block>
+			<th:block th:if="${cli.apellido2} == null">
+				<div class="col" th:text="SIN">Fech</div>
+			</th:block>
+			<div class="col" th:text="${cli.ciudad}">Fec</div>
+			<div class="col" th:text="${cli.categoria}">Fe</div>
 		</div>
-		
-		<div class="clearfix">
-			<div style="float: left;width: 15%" th:text=#{id}></div>
-			<div style="float: left;width: 15%" th:text=#{nombre}></div>
-			<div style="float: left;width: 15%" th:text=#{ape1}></div>
-			<div style="float: left;width: 15%" th:text=#{ape2}></div>
-			<div style="float: left;width: 15%" th:text=#{ciudad}></div>
-			<div style="float: left;width: auto" th:text=#{categoria}></div>
-		</div>
-		
-		<div class="clearfix">
-			<div th:each="cli : ${listaStatCli}" style="margin-top: 6px;" class="clearfix">
-				<div style="float: left;width: 15%;" th:text="${cli.id}">ID</div>
-				<div style="float: left;width: 15%;" th:text="${cli.nombre}">Total</div>
-				<div style="float: left;width: 15%;" th:text="${cli.apellido1}">Fecha</div>
-				<th:block th:if="${cli.apellido2} != null">
-					<div style="float: left;width: 15%;" th:text="${cli.apellido2}">Fech</div></a>
-				</th:block>
-				<th:block th:if="${cli.apellido2} == null">
-					<div style="float: left;width: 15%;" th:text="SIN">Fech</div></a>
-				</th:block>
-				<div style="float: left;width: 15%;" th:text="${cli.ciudad}">Fec</div>
-				<div style="float: left;width: 15%;" th:text="${cli.categoria}">Fe</div>
-				<div style="float: none;width: auto;overflow: hidden;"></div>
-		</div>
-		</div>
-		
 	</div>
 </body>
 </body>

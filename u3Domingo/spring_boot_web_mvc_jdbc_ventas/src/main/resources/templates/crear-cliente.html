@@ -3,19 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Clientes</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
 <style>
 .clearfix::after {
 	content: "";
 	display: block;
 	clear: both;
 }
+.error {
+	color: red;
+}
+
 
 </style>
 </head>
 <body>
 <body>
 
-	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
+	<div id="container" style="float:none; margin: 0 auto;width: 95%;" >
 		<div class="clearfix">
 			<div style="float: left; width: 50%">
 				<h1 th:text=#{newcli}></h1>
@@ -28,7 +34,7 @@
 			<hr/>
 		</div>
 		<div class="clearfix">
-			<form th:action="@{/clientes/crear}" th:object="${cliente}" th:method="post">
+			<form th:action="@{/clientes/crear}" th:object="${cliente}" method="post">
 				<div style="float: left;width: 25%" th:text=#{nombre}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
@@ -76,6 +82,7 @@
 				</div> 
 				<input type="submit" value="Crear" />
 			</form>
+			
 		</div>
 		<div class="clearfix">
 			<hr/>
