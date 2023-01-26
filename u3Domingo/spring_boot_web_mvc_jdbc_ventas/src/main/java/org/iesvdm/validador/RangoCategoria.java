@@ -16,9 +16,6 @@ import jakarta.validation.Payload;
 @Documented
 @Repeatable(org.iesvdm.validador.RangoCategoria.List.class)
 public @interface RangoCategoria {
-	
-		//Anotación de valor sobre enum ChequearNombreMode.BAJO, MEDIO o ALTO
-		RangoCategoriaMode value() default RangoCategoriaMode.CIEN;
 		
 		//Campos adicionales de parámetros para la anotación
 		int min() default 4;
