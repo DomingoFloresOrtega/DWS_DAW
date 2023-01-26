@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.iesvdm.dao.ClienteDAO;
 import org.iesvdm.dao.ClienteDAOImpl;
+import org.iesvdm.dto.ClienteDTO;
+import org.iesvdm.mapstruct.ClienteMapper;
 import org.iesvdm.modelo.Cliente;
 import org.iesvdm.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,6 +30,9 @@ import jakarta.validation.Valid;
 public class ClienteController {
 	
 	private ClienteService clienteService;
+	
+	@Autowired
+	private ClienteMapper clienteMapper;
 	
 	//Se utiliza inyección automática por constructor del framework Spring.
 	//Por tanto, se puede omitir la anotación Autowired
@@ -51,6 +57,9 @@ public class ClienteController {
 	public String detalle(Model model, @PathVariable Integer id ) {
 		
 		Cliente cliente = clienteService.one(id);
+		
+		ClienteDTO clienteDTO = clienteMapper.detalleADetalleDTO(cliente, 0, 0, 0, 0, 0);
+		
 		model.addAttribute("cliente", cliente);
 		
 		return "detalle-cliente";
