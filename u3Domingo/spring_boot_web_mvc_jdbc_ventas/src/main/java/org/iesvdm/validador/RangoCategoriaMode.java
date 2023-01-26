@@ -1,0 +1,14 @@
+package org.iesvdm.validador;
+
+public enum RangoCategoriaMode {
+	CIEN,
+	DOSCIENTOS,
+	TRESCIENTOS,
+	CUATROCIENTOS,
+	QUINIENTOS,
+	SEISCIENTOS,
+	SETECIENTOS,
+	OCHOCIENTOS,
+	NOVECIENTOS,
+	MIL
+}
