@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,7 @@ import jakarta.validation.Valid;
 //Los mappings de los métodos tendrían este valor /clientes como
 //prefijo.
 //@RequestMapping("/clientes")
+@ControllerAdvice
 public class ClienteController {
 	
 	private ClienteService clienteService;
@@ -73,12 +76,14 @@ public class ClienteController {
 		
 	}
 	
+	@ExceptionHandler(RuntimeException.class)
 	@PostMapping({"/clientes/crear","/clientes/crear/"})
-	public String submitCrear(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult bindingResulted, Model model) {
+	public String submitCrear(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult bindingResulted, Model model, RuntimeException exception) {
 		
 		// Si no tiene errores
 		if (bindingResulted.hasErrors()) {
 			model.addAttribute("cliente", cliente);
+			model.addAttribute("traza", exception.getMessage());
 			return "crear-cliente";
 		}
 		System.out.println(bindingResulted);

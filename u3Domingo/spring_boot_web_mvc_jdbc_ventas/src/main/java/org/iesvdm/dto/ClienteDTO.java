@@ -1,7 +1,6 @@
 package org.iesvdm.dto;
 
 import org.iesvdm.validador.RangoCategoria;
-import org.iesvdm.validador.RangoCategoriaMode;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

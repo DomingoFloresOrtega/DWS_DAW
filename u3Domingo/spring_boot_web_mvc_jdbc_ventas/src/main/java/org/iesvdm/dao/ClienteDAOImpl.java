@@ -146,4 +146,69 @@ public class ClienteDAOImpl implements ClienteDAO {
 		log.info("Delete de Cliente con {} registros eliminados.", rows);		
 		
 	}
+	
+	/**
+	 * Devuelve lista con todos loa Clientes.
+	 */
+	@Override
+	public int getNumTot(int id) {
+		
+		int numTot = jdbcTemplate.queryForObject(
+                "SELECT count(*) FROM cliente",Integer.class,id);
+		
+        return numTot;
+        
+	}
+	
+	/**
+	 * Devuelve lista con todos loa Clientes.
+	 */
+	@Override
+	public int getNumPedTri(int id) {
+		
+		int numTot = jdbcTemplate.queryForObject(
+                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-90 and id_cliente = 2;",Integer.class,id);
+		
+        return numTot;
+        
+	}
+	
+	/**
+	 * Devuelve lista con todos loa Clientes.
+	 */
+	@Override
+	public int getNumPedSem(int id) {
+		
+		int numTot = jdbcTemplate.queryForObject(
+                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-182 and id_cliente = 2;",Integer.class,id);
+		
+        return numTot;
+        
+	}
+	
+	/**
+	 * Devuelve lista con todos loa Clientes.
+	 */
+	@Override
+	public int getNumPedAnu(int id) {
+		
+		int numTot = jdbcTemplate.queryForObject(
+                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-365 and id_cliente = 2;",Integer.class,id);
+		
+        return numTot;
+        
+	}
+	
+	/**
+	 * Devuelve lista con todos loa Clientes.
+	 */
+	@Override
+	public int getNumPedLus(int id) {
+		
+		int numTot = jdbcTemplate.queryForObject(
+                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-1825 and id_cliente = 2;",Integer.class,id);
+		
+        return numTot;
+        
+	}
 }

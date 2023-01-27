@@ -16,4 +16,14 @@ public interface ClienteDAO {
 	
 	public void delete(int id);
 	
+	public int getNumTot(int id);
+	
+	public int getNumPedTri(int id);
+	
+	public int getNumPedSem(int id);
+	
+	public int getNumPedAnu(int id);
+	
+	public int getNumPedLus(int id);
+	
 }
