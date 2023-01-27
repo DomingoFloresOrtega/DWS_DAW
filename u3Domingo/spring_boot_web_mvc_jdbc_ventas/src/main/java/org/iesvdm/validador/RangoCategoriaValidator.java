@@ -12,7 +12,6 @@ public class RangoCategoriaValidator implements ConstraintValidator<RangoCategor
     public void initialize(RangoCategoria constraintAnnotation) {
        this.min = constraintAnnotation.min();
        this.max = constraintAnnotation.max();
-        
     }
 
     @Override
