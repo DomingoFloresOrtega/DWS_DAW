@@ -1,27 +1,27 @@
 package org.iesvdm.validador;
 
+import java.util.Iterator;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class RangoCategoriaValidator implements ConstraintValidator<RangoCategoria, Integer> {
-	private int num;
-    private int min;
-    private int max;
+public class RangoCategoriaPlusValidator implements ConstraintValidator<RangoCategoriaPlus, Integer> {
+	private int[] array;
     
     @Override
-    public void initialize(RangoCategoria constraintAnnotation) {
-       this.min = constraintAnnotation.min();
-       this.max = constraintAnnotation.max();
+    public void initialize(RangoCategoriaPlus constraintAnnotation) {
+       this.array = constraintAnnotation.value();
     }
 
     @Override
     public boolean isValid(Integer categoria, ConstraintValidatorContext constraintContext) {
        
     	String mensajeError = null;
-    	if (categoria == 100 || categoria == 200 || categoria == 300 || categoria == 400
-    			|| categoria == 500 || categoria == 600 || categoria == 700 || categoria == 800
-    			|| categoria == 900 || categoria == 1000) {
-    		boolean isValid = true;
+    	
+    	for (int i = 0; i < array.length; i++) {
+    		if (categoria == array[i]) {
+    			boolean isValid = true;
+    		}
     	}
     	
     	boolean isValid = false;

@@ -14,12 +14,11 @@ import jakarta.validation.Payload;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = RangoCategoriaValidator.class)
 @Documented
-@Repeatable(org.iesvdm.validador.RangoCategoria.List.class)
-public @interface RangoCategoria {
+@Repeatable(org.iesvdm.validador.RangoCategoriaPlus.List.class)
+public @interface RangoCategoriaPlus {
 		
 		//Campos adicionales de parámetros para la anotación
-		int min() default 100;
-		int max() default 1000;
+		int[] value() default 1;
 			
 		String message() default "ERROR";
 
@@ -32,7 +31,7 @@ public @interface RangoCategoria {
 		@Retention(RetentionPolicy.RUNTIME)
 		@Documented
 		@interface List {
-			RangoCategoria[] value();
+			RangoCategoriaPlus[] value();
 		}
 
 }
