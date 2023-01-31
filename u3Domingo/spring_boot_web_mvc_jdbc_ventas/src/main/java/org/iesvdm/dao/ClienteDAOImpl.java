@@ -167,7 +167,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public int getNumPedTri(int id) {
 		
 		int numTot = jdbcTemplate.queryForObject(
-                "SELECT count(*) FROM pedido WHERE fecha >= (CURDATE() - interval 90 day) and id_cliente = 2;",Integer.class,id);
+                "SELECT count(*) FROM pedido WHERE fecha >= (CURDATE() - interval 90 day) and id_cliente = ?;",Integer.class,id);
 		
         return numTot;
         
