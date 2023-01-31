@@ -29,7 +29,6 @@ import jakarta.validation.Valid;
 //Los mappings de los métodos tendrían este valor /clientes como
 //prefijo.
 //@RequestMapping("/clientes")
-@ControllerAdvice
 public class ClienteController {
 	
 	private ClienteService clienteService;
@@ -87,7 +86,6 @@ public class ClienteController {
 		
 	}
 	
-	@ExceptionHandler(RuntimeException.class)
 	@PostMapping({"/clientes/crear","/clientes/crear/"})
 	public String submitCrear(@Valid @ModelAttribute("cliente") Cliente cliente, BindingResult bindingResulted, Model model, RuntimeException exception) {
 		
