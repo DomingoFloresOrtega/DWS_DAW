@@ -63,7 +63,18 @@ public class ClienteController {
 		
 		ClienteDTO clienteDTO = clienteMapper.detalleADetalleDTO(cliente, 0, 0, 0, 0, 0);
 		
+		Integer cliNumPedTri = clienteService.getNumPedTri(id);
+		Integer cliNumPedSem = clienteService.getNumPedSem(id);
+		Integer cliNumPedAnu = clienteService.getNumPedAnu(id);
+		Integer cliNumPedLus = clienteService.getNumPedLus(id);
+		
+		
+		
 		model.addAttribute("cliente", cliente);
+		model.addAttribute("pedidosTri", cliNumPedTri);
+		model.addAttribute("pedidosSem", cliNumPedSem);
+		model.addAttribute("pedidosAnu", cliNumPedAnu);
+		model.addAttribute("pedidosLus", cliNumPedLus);
 		
 		return "detalle-cliente";
 		

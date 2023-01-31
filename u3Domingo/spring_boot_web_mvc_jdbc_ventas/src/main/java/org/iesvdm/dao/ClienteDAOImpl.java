@@ -167,7 +167,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public int getNumPedTri(int id) {
 		
 		int numTot = jdbcTemplate.queryForObject(
-                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-90 and id_cliente = 2;",Integer.class,id);
+                "SELECT count(*) FROM pedido WHERE fecha >= (CURDATE() - interval 90 day) and id_cliente = ?;",Integer.class,id);
 		
         return numTot;
         
@@ -180,7 +180,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public int getNumPedSem(int id) {
 		
 		int numTot = jdbcTemplate.queryForObject(
-                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-182 and id_cliente = 2;",Integer.class,id);
+                "SELECT count(*) FROM pedido WHERE fecha >= (CURDATE() - interval 182 day) and id_cliente = ?;",Integer.class,id);
 		
         return numTot;
         
@@ -193,7 +193,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public int getNumPedAnu(int id) {
 		
 		int numTot = jdbcTemplate.queryForObject(
-                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-365 and id_cliente = 2;",Integer.class,id);
+                "SELECT count(*) FROM pedido WHERE fecha >= (CURDATE() - interval 365 day) and id_cliente = ?;",Integer.class,id);
 		
         return numTot;
         
@@ -206,7 +206,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public int getNumPedLus(int id) {
 		
 		int numTot = jdbcTemplate.queryForObject(
-                "SELECT count(*) FROM pedido WHERE fecha >= SYSDATE()-1825 and id_cliente = 2;",Integer.class,id);
+                "SELECT count(*) FROM pedido WHERE fecha >= (CURDATE() - interval 1825 day) and id_cliente = ?;",Integer.class,id);
 		
         return numTot;
         
