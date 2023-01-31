@@ -1,4 +1,4 @@
-package excepciones;
+package org.iesvdm.excepciones;
 
 public class MiExcepcion extends Exception {
 	private static final long serialVersionUID = 1L;

@@ -1,10 +1,9 @@
 package org.iesvdm.controlador;
 
+import org.iesvdm.excepciones.MiExcepcion;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import excepciones.MiExcepcion;
 
 @ControllerAdvice
 public class ExcepcionController {
