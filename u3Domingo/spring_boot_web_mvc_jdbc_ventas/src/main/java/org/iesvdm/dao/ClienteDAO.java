@@ -18,6 +18,8 @@ public interface ClienteDAO {
 	
 	public int getNumTot(int id);
 	
+	public int getNumPedTot(int id);
+	
 	public int getNumPedTri(int id);
 	
 	public int getNumPedSem(int id);

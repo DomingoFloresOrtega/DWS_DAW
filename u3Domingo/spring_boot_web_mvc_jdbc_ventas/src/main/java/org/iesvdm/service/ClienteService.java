@@ -45,6 +45,10 @@ public class ClienteService {
 		clienteDAO.delete(id);
 	}
 	
+	public int getNumPedTot(int id) {
+		return clienteDAO.getNumPedTot(id);
+	}
+	
 	public int getNumPedTri(int id) {
 		return clienteDAO.getNumPedTri(id);
 	}

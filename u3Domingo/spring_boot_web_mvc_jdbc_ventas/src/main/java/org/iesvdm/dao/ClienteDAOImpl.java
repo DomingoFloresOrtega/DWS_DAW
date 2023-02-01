@@ -160,6 +160,17 @@ public class ClienteDAOImpl implements ClienteDAO {
         
 	}
 	
+	
+	@Override
+	public int getNumPedTot(int id) {
+		
+		int numTot = jdbcTemplate.queryForObject(
+                "SELECT count(*) FROM pedido WHERE id_cliente = ?;",Integer.class,id);
+		
+        return numTot;
+        
+	}
+	
 	/**
 	 * Devuelve lista con todos loa Clientes.
 	 */

@@ -60,20 +60,22 @@ public class ClienteController {
 		
 		Cliente cliente = clienteService.one(id);
 		
-		ClienteDTO clienteDTO = clienteMapper.detalleADetalleDTO(cliente, 0, 0, 0, 0, 0);
-		
+		Integer cliNumPedTot = clienteService.getNumPedTot(id);
 		Integer cliNumPedTri = clienteService.getNumPedTri(id);
 		Integer cliNumPedSem = clienteService.getNumPedSem(id);
 		Integer cliNumPedAnu = clienteService.getNumPedAnu(id);
 		Integer cliNumPedLus = clienteService.getNumPedLus(id);
 		
+		ClienteDTO clienteDTO = clienteMapper.detalleADetalleDTO(cliente, cliNumPedTot, cliNumPedTri, cliNumPedSem, cliNumPedAnu, cliNumPedLus);
+		
 		
 		
 		model.addAttribute("cliente", cliente);
-		model.addAttribute("pedidosTri", cliNumPedTri);
-		model.addAttribute("pedidosSem", cliNumPedSem);
-		model.addAttribute("pedidosAnu", cliNumPedAnu);
-		model.addAttribute("pedidosLus", cliNumPedLus);
+		model.addAttribute("pedidosTot", clienteDTO.getNumPedTot());
+		model.addAttribute("pedidosTri", clienteDTO.getNumPedTri());
+		model.addAttribute("pedidosSem", clienteDTO.getNumPedSem());
+		model.addAttribute("pedidosAnu", clienteDTO.getNumPedAnu());
+		model.addAttribute("pedidosLus", clienteDTO.getNumPedLus());
 		
 		return "detalle-cliente";
 		
