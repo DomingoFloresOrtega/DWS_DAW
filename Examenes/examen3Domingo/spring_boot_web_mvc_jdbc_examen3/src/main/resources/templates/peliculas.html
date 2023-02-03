@@ -1,0 +1,65 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Peliculas</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<body>
+	<div class="container">
+		<div class="row mt-4">
+			<div class="col-md-8">
+				<h1>Peliculas</h1>
+			</div>
+			<div class="col-md-8">
+				<form action="/peliculas/crear">
+					<input type="submit" class="btn btn-success" value="Crear">
+				</form>
+			</div>	
+		</div>
+		<hr/>
+		<div class="row">
+			<div class="col-md-1" th:text="Titulo"></div>
+			<div class="col-md-1" th:text="Descripcion"></div>
+			<div class="col-md-1" th:text="Lanzamiento"></div>
+			<div class="col-md-1" th:text="Idioma"></div>
+			<div class="col-md-1" th:text="IdiomaO"></div>
+			<div class="col-md-1" th:text="DuracionA"></div>
+			<div class="col-md-1" th:text="PrecioA"></div>
+			<div class="col-md-1" th:text="Duracion"></div>
+			<div class="col-md-1" th:text="PrecioR."></div>
+			<div class="col-md-1" th:text="Clasificacion"></div>
+			<div class="col-md-1" th:text="CaracteristicasE."></div>
+		</div>
+		<hr/>
+
+		<div th:each="peliculas : ${listaPeliculas}" class="row">
+			<div class="col-md-1" th:text="${peliculas.titulo}"></div>
+			<div class="col-md-1" th:text="${peliculas.descripcion}"></div>
+			<div class="col-md-1" th:text="${peliculas.anio_lanzamiento}"></div>
+			<div class="col-md-1" th:text="${peliculas.id_idioma}"></div>
+			<div class="col-md-1" th:text="${peliculas.id_idioma_original}"></div>
+			<div class="col-md-1" th:text="${peliculas.duracion_alquiler}"></div>
+			<div class="col-md-1" th:text="${peliculas.rental_rate}"></div>
+			<div class="col-md-1" th:text="${peliculas.duracion}"></div>
+			<div class="col-md-1" th:text="${peliculas.replacement_cost}"></div>
+			<div class="col-md-1" th:text="${peliculas.clasificacion}"></div>
+			<div class="col-md-1" th:text="${peliculas.caracteristicas_especiales}"></div>
+			<div class="col-md-1">
+				<form action="/" class="float-start">
+    				<input type="submit" value="Ver Detalle" />
+				</form>
+				<form action="/" class="float-start">
+    				<input type="submit" value="Editar" />
+				</form>
+				<form action="/" method="post" class="float-start">					
+    				<input type="submit" value="Eliminar" />
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</body>
+</html>

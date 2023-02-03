@@ -1,0 +1,67 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Categoria</title>
+<style>
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+</style>
+</head>
+<body>
+<body>
+
+	<div id="contenedora" style="float:none; margin: 0 auto;width: 95%;" >
+		<div class="clearfix">
+			<div style="float: left; width: 50%">
+				<h1 th:text="Categoria"></h1>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+				
+				<div style="position: absolute; left: 39%; top : 39%;">
+					
+						<form action="#" >
+							<input type="submit" value="Volver" />
+						</form>
+					</div>
+				
+			</div>
+		</div>
+		<div class="clearfix">
+			<hr/>
+		</div>
+		<div class="clearfix">
+				<div style="float: left;width: 25%" th:text="ID">
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="${categoria.id}" readonly="readonly" />
+				</div> 
+				<div style="float: left;width: 25%" th:text=#{nombre}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="${categoria.nombre}" readonly="readonly" />
+				</div> 
+				<div style="float: left;width: 25%" th:text=#{ape1}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="${categoria.ultima_actualizacion}" readonly="readonly" />
+				</div>
+		</div>
+		<div class="clearfix">
+			<hr/>
+		</div>
+		
+		<div class="row">
+			<div class="col" th:text="TotalPeliculas"></div>
+			<div class="col" th:text="${categoriaDTO.numPelTot}"></div>
+			<div class="col" th:text="TotalPeliculasAlmacen"></div>
+			<div class="col" th:text="${categoriaDTO.numPelAlm}"></div>
+		</div>
+	</div>
+</body>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Peliculas</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<style>
+.clearfix::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.error {
+	color: red;
+}
+
+
+</style>
+</head>
+<body>
+<body>
+
+	<div id="container" style="float:none; margin: 0 auto;width: 95%;" >
+		<div class="clearfix">
+			<div style="float: left; width: 50%">
+				<h1 th:text=#{newpel}></h1>
+			</div>
+			<div style="float: none;width: auto;overflow: hidden;min-height: 80px;position: relative;">
+				
+			</div>
+		</div>
+		<div class="clearfix">
+			<hr/>
+		</div>
+		<div class="clearfix">
+			<form th:action="@{/peliculas/crear}" th:object="${pelicula}" method="post">
+				<div style="float: left;width: 25%" th:text=#{titulo}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{titulo}" />
+					<ul th:if="${#fields.hasErrors('titulo')}">
+        			     <li th:each="err : ${#fields.errors('titulo')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				<div style="float: left;width: 25%" th:text=#{descripcion}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{descripcion}" />
+					<ul th:if="${#fields.hasErrors('descripcion')}">
+        			     <li th:each="err : ${#fields.errors('descripcion')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				<div style="float: left;width: 25%" th:text=#{anio_lanzamiento}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{anio_lanzamiento}" />
+					<ul th:if="${#fields.hasErrors('anio_lanzamiento')}">
+        			     <li th:each="err : ${#fields.errors('anio_lanzamiento')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				<div style="float: left;width: 25%" th:text=#{id_idioma}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<select th:field="*{id_idioma}">
+						<div th:each="idiomas : ${listaIdiomas}" style="margin-top: 6px;" class="clearfix">
+							<option th:value="${idiomas.id}" th:text="${idiomas.nombre}"></option>
+						</div>
+					</select>
+					<ul th:if="${#fields.hasErrors('id_idioma')}">
+        			     <li th:each="err : ${#fields.errors('id_idioma')}" th:text="${err}" class="error" />
+    			     </ul>
+				</div>
+				
+				<div style="float: left;width: 25%" th:text=#{id_idioma_o}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<select th:field="*{id_idioma_original}">
+						<div th:each="idioma : ${listaIdiomas}" style="margin-top: 6px;" class="clearfix">
+							<option th:value="${idioma.id}" th:text="${idioma.nombre}"></option>
+						</div>
+					</select>	
+					<ul th:if="${#fields.hasErrors('id_idioma_original')}">
+        			     <li th:each="err : ${#fields.errors('id_idioma_original')}" th:text="${err}" class="error" />
+    			     </ul>
+				</div>
+				
+				<div style="float: left;width: 25%" th:text=#{duracion_alquiler}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{duracion_alquiler}" />
+					<ul th:if="${#fields.hasErrors('duracion_alquiler')}">
+        			     <li th:each="err : ${#fields.errors('duracion_alquiler')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				
+				<div style="float: left;width: 25%" th:text=#{rental_rate}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{rental_rate}" />
+					<ul th:if="${#fields.hasErrors('rental_rate')}">
+        			     <li th:each="err : ${#fields.errors('rental_rate')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				
+				<div style="float: left;width: 25%" th:text=#{duracion}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{duracion}" />
+					<ul th:if="${#fields.hasErrors('duracion')}">
+        			     <li th:each="err : ${#fields.errors('duracion')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				
+				<div style="float: left;width: 25%" th:text=#{replacement_cost}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{replacement_cost}" />
+					<ul th:if="${#fields.hasErrors('replacement_cost')}">
+        			     <li th:each="err : ${#fields.errors('replacement_cost')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				
+				<div style="float: left;width: 25%" th:text=#{clasificacion}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<select th:field="*{clasificacion}">
+						<option th:value="G" th:text="G"></option>
+						<option th:value="PG" th:text="PG"></option>
+						<option th:value="PG-13" th:text="PG-13"></option>
+						<option th:value="R" th:text="R"></option>
+						<option th:value="NC-17" th:text="NC-17"></option>
+					</select>
+					<ul th:if="${#fields.hasErrors('clasificacion')}">
+        			     <li th:each="err : ${#fields.errors('clasificacion')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				
+				<div style="float: left;width: 25%" th:text=#{caracteristicas_especiales}>
+				</div>
+				<div style="float: none;width: auto;overflow: hidden;">
+					<input th:field="*{caracteristicas_especiales}" />
+					<ul th:if="${#fields.hasErrors('caracteristicas_especiales')}">
+        			     <li th:each="err : ${#fields.errors('caracteristicas_especiales')}" th:text="${err}" class="error" />
+    			     </ul>
+					
+				</div> 
+				<input type="submit" th:value="#{crear}" />
+			</form>
+			
+		</div>
+		<div class="clearfix">
+			<hr/>
+		</div>
+	</div>
+</body>
+</body>
+</html>
