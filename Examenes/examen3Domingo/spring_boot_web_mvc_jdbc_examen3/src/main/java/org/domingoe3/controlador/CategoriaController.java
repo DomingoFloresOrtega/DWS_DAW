@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.domingoe3.dto.CategoriaDTO;
 import org.domingoe3.mapstruct.CategoriaMapper;
+import org.domingoe3.modelo.AlmacenCat;
 import org.domingoe3.modelo.Categoria;
 import org.domingoe3.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class CategoriaController {
 		
 		Categoria categoria = categoriaService.one(id);	
 		Integer catNumPelTot = categoriaService.getNumPelTot(id);
-		Integer catNumPelAlm = categoriaService.getNumPelAlm(id);
+		List<AlmacenCat> catNumPelAlm = categoriaService.getNumPelAlm(id);
 		
 		CategoriaDTO categoriaDTO = categoriaMapper.detalleADetalleDTO(categoria, catNumPelTot, catNumPelAlm);
 		

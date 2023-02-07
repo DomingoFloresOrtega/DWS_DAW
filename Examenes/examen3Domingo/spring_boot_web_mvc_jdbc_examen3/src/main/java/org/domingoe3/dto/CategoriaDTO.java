@@ -3,7 +3,7 @@ package org.domingoe3.dto;
 import java.util.Date;
 import java.util.List;
 
-import org.domingoe3.modelo.Categoria;
+import org.domingoe3.modelo.AlmacenCat;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -22,5 +22,5 @@ public class CategoriaDTO {
 	public Date ultima_actualizacion;
 	
 	private int numPelTot;
-	private int numPelAlm;
+	private List<AlmacenCat> numPelAlm;
 }

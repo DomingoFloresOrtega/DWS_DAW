@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
+import org.domingoe3.modelo.AlmacenCat;
 import org.domingoe3.modelo.Categoria;
 import org.domingoe3.modelo.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,12 +80,18 @@ public class CategoriaDAOImpl implements CategoriaDAO {
 	}
 	
 	@Override
-	public int getNumPelAlm(int id) {
+	public List<AlmacenCat> getNumPelAlm(int id) {
 		
-		int numTot = jdbcTemplate.queryForObject(
-                "SELECT count(p.id_pelicula) FROM pelicula p JOIN pelicula_categoria pc ON p.id_pelicula = pc.id_pelicula WHERE pc.id_categoria = ?",Integer.class,id);
+		List<AlmacenCat> listFab = jdbcTemplate.query(
+                "SELECT a.id_almacen as id, count(p.id_pelicula) as peliculas FROM pelicula p LEFT JOIN pelicula_categoria pc ON p.id_pelicula = pc.id_pelicula LEFT JOIN categoria c ON c.id_categoria = pc.id_categoria LEFT JOIN inventario i ON i.id_pelicula = pc.id_pelicula LEFT JOIN almacen a ON a.id_almacen = i.id_almacen WHERE c.id_categoria = ? GROUP BY a.id_almacen ORDER BY a.id_almacen",
+                (rs, rowNum) -> new AlmacenCat(rs.getInt("id"),
+                						 	rs.getInt("peliculas")
+                						 	), id
+        );
 		
-        return numTot;
+		log.info("Devueltos {} registros.", listFab.size());
+		
+        return listFab;
         
 	}
 	
