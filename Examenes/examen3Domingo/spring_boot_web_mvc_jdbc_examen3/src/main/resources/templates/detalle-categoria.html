@@ -45,7 +45,7 @@
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${categoria.nombre}" readonly="readonly" />
 				</div> 
-				<div style="float: left;width: 25%" th:text=#{ape1}>
+				<div style="float: left;width: 25%" th:text=#{date}>
 				</div>
 				<div style="float: none;width: auto;overflow: hidden;">
 					<input th:field="${categoria.ultima_actualizacion}" readonly="readonly" />
@@ -56,10 +56,20 @@
 		</div>
 		
 		<div class="row">
-			<div class="col" th:text="TotalPeliculas"></div>
+			<div class="col" th:text="#{totpel}"></div>
 			<div class="col" th:text="${categoriaDTO.numPelTot}"></div>
-			<div class="col" th:text="TotalPeliculasAlmacen"></div>
-			<div class="col" th:text="${categoriaDTO.numPelAlm}"></div>
+			<div class="col" th:text="#{totpelalm}"></div>
+			<div th:each="pel : ${categoriaDTO.numPelAlm}" class="row">
+			<div class="col"><a th:text="#{alm}"></a>
+				<th:block th:if="${pel.id} == 0">
+					<a th:text="#{nasig}"></a> - <a th:text="${pel.numPel}"></a> <a th:text="#{pel}"></a>
+				</th:block>
+				
+				<th:block th:if="${pel.id} != 0">
+					<a th:text="${pel.id}"></a> - <a th:text="${pel.numPel}"></a> <a th:text="#{pel}"></a>
+				</th:block>
+			</div>
+		
 		</div>
 	</div>
 </body>
