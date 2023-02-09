@@ -1,4 +1,4 @@
-package org.iesvdm.repository;
+package org.iesvdm;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

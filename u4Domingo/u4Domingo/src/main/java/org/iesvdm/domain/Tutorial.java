@@ -1,18 +1,21 @@
-package org.iesvdm.tutoriales;
+package org.iesvdm.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(
         name = "tutorials",
         schema = "bbdd_tutoriales",
@@ -32,6 +35,8 @@ public class Tutorial {
 
     @Column(name = "published")
     private boolean published;
+
+    private Date publicationDate;
 
     @OneToMany(mappedBy = "tutorial", fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
