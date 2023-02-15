@@ -1,6 +1,8 @@
 package org.iesvdm.u4domingo;
 
+import jakarta.transaction.Transactional;
 import org.iesvdm.domain.*;
+import org.iesvdm.repository.CategoriaRepository;
 import org.iesvdm.repository.PeliculaRepository;
 import org.iesvdm.repository.SocioRepository;
 import org.iesvdm.repository.TutorialRepository;
@@ -8,12 +10,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.annotation.Order;
+import org.springframework.test.annotation.Commit;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Period;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 @SpringBootTest
@@ -25,6 +29,8 @@ class TutorialesApplicationTests {
 	SocioRepository socioRepository;
 	@Autowired
 	PeliculaRepository peliculaRepository;
+	@Autowired
+	CategoriaRepository categoriaRepository;
 
 	@Test
 	void contextLoads() {
@@ -65,8 +71,9 @@ class TutorialesApplicationTests {
 		List<Socio> socioList = socioRepository.findAll();
 	}
 
+	@Transactional
+	@Commit
 	@Test
-	@Order(1)
 	void testPeliculasRepository() {
 
 		Categoria categoria = Categoria.builder().nombre("Accion")
@@ -84,10 +91,42 @@ class TutorialesApplicationTests {
 				.clasificacion(Clasificacion.R)
 				.caracteristicasEspecialesStr("Trailers,Commentaries")
 				.ultimaModificacion(new Date())
+				.categorias(new HashSet<>())
 				.build();
+
+		pelicula.getCategorias().add(categoria);
 
 		peliculaRepository.save(pelicula);
 	}
+	@Transactional // si es LAZY
+	@Commit // si se pone Transactional, es obligatorio hacer commit
+	@Test
+	void testCategoriasRepository() {
+
+		Pelicula pelicula = Pelicula.builder().titulo("Indiana Jones 2")
+				.descripcion("Película para toda la familia de aventura")
+				.anyoLanzamiento("1993")
+				.idioma("Español")
+				.idiomaOriginal("Inglés")
+				.duracion(Duration.parse("PT1H40M"))
+				.precioAlquiler(new BigDecimal("20.50"))
+				.periodoAlquiler(Period.of(0,1,15))
+				.clasificacion(Clasificacion.R)
+				.caracteristicasEspecialesStr("Trailers,Commentaries")
+				.ultimaModificacion(new Date())
+				.categorias(new HashSet<>())
+				.build();
+
+		Categoria categoria = Categoria.builder().nombre("Aventura")
+				.ultima_actualizacion("10/10/2020")
+				.peliculas(new HashSet<>())
+				.build();
+
+		categoria.getPeliculas().add(pelicula);
+
+		categoriaRepository.save(categoria);
+	}
+
 
 	@Test
 	void testTutorialWithCommentsRepository() {

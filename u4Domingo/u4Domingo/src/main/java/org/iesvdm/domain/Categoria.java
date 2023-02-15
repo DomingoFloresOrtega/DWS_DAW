@@ -22,7 +22,7 @@ public class Categoria {
 
     private String ultima_actualizacion;
 
-    @ManyToMany(mappedBy = "categorias")
+    @ManyToMany(mappedBy = "categorias", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnore
     Set<Pelicula> peliculas = new HashSet<>();
 }

@@ -14,6 +14,7 @@ import java.util.*;
 @Builder
 @ToString
 @Entity
+@EqualsAndHashCode(of = "id")
 public class Pelicula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +44,7 @@ public class Pelicula {
 
     private Clasificacion clasificacion;
 
-    @ManyToMany(cascade = "")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "pelicula_categoria",
             joinColumns = @JoinColumn(name = "id_pelicula", referencedColumnName = "id_pelicula"),
