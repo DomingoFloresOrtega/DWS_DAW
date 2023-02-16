@@ -1,2 +1,7 @@
-package org.iesvdm.repository;public interface PersonRepository {
+package org.iesvdm.repository;
+
+import org.iesvdm.domain.Person;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PersonRepository extends JpaRepository<Person, Long> {
 }

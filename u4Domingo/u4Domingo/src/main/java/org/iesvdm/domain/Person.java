@@ -1,14 +1,23 @@
 package org.iesvdm.domain;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
+
+@Entity
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "person_id")
     private long id;
 
     private String name;
@@ -27,4 +36,7 @@ public class Person {
     @CollectionTable(name = "person_phone_numbers", joinColumns = @JoinColumn(name = "person_id"))
     @Column(name = "phone_number")
     private Set<String> phoneNumbers;
+
+    @Embedded
+    private Address mainAddress;
 }

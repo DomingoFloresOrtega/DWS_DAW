@@ -1,11 +1,9 @@
 package org.iesvdm.u4domingo;
 
+import jakarta.persistence.Column;
 import jakarta.transaction.Transactional;
 import org.iesvdm.domain.*;
-import org.iesvdm.repository.CategoriaRepository;
-import org.iesvdm.repository.PeliculaRepository;
-import org.iesvdm.repository.SocioRepository;
-import org.iesvdm.repository.TutorialRepository;
+import org.iesvdm.repository.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +18,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @SpringBootTest
 class TutorialesApplicationTests {
 
@@ -31,6 +31,8 @@ class TutorialesApplicationTests {
 	PeliculaRepository peliculaRepository;
 	@Autowired
 	CategoriaRepository categoriaRepository;
+	@Autowired
+	PersonRepository personRepository;
 
 	@Test
 	void contextLoads() {
@@ -125,6 +127,84 @@ class TutorialesApplicationTests {
 		categoria.getPeliculas().add(pelicula);
 
 		categoriaRepository.save(categoria);
+	}
+
+	@Transactional
+	@Commit
+	@Test
+	void testPersonasAddressesRepository() {
+
+		Person person = Person.builder()
+				.name("Antonio Martín")
+				.phoneNumbers(new HashSet<>())
+				.addresses(new HashSet<>())
+				.build();
+
+		Address address1 = Address.builder()
+				.houseNumber(23)
+				.street("Portugal")
+				.city("Malaga")
+				.zipCode(29402)
+				.build();
+
+		Address address2 = Address.builder()
+				.houseNumber(23)
+				.street("Mallorca")
+				.city("Malaga")
+				.zipCode(29403)
+				.build();
+
+		person.getAddresses().add(address1);
+		person.getAddresses().add(address2);
+		person.getPhoneNumbers().add("951673546");
+		person.getPhoneNumbers().add("953462718");
+		personRepository.save(person);
+		Person personSaved = personRepository.findById(person.getId()).get();
+		assertThat(personSaved.getAddresses()).hasSize(2);
+		assertThat(personSaved.getPhoneNumbers()).hasSize(2);
+	}
+
+	@Transactional
+	@Commit
+	@Test
+	void testPersonasAddressesMainaddressRepository() {
+
+		Person person = Person.builder()
+				.name("Antonio Perez")
+				.phoneNumbers(new HashSet<>())
+				.addresses(new HashSet<>())
+				.build();
+
+		Address mainAddress = Address.builder()
+				.houseNumber(30)
+				.street("Alemania")
+				.city("Buckingham")
+				.zipCode(34210)
+				.build();
+
+		Address address1 = Address.builder()
+				.houseNumber(23)
+				.street("Portugal")
+				.city("Malaga")
+				.zipCode(29402)
+				.build();
+
+		Address address2 = Address.builder()
+				.houseNumber(23)
+				.street("Mallorca")
+				.city("Malaga")
+				.zipCode(29403)
+				.build();
+
+		person.setMainAddress(mainAddress);
+		person.getAddresses().add(address1);
+		person.getAddresses().add(address2);
+		person.getPhoneNumbers().add("951673546");
+		person.getPhoneNumbers().add("953462718");
+		personRepository.save(person);
+		Person personSaved = personRepository.findById(person.getId()).get();
+		assertThat(personSaved.getAddresses()).hasSize(2);
+		assertThat(personSaved.getPhoneNumbers()).hasSize(2);
 	}
 
 
