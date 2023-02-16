@@ -11,9 +11,9 @@ import lombok.*;
 
 @Embeddable
 public class Address {
-    private int id;
+    private Integer id;
     private String street;
-    private int houseNumber;
+    private Integer houseNumber;
     private String city;
-    private int zipCode;
+    private Integer zipCode;
 }
