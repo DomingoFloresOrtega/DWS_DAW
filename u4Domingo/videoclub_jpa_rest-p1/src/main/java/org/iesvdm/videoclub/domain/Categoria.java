@@ -23,7 +23,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
-    private long id;
+    private long idCategoria;
     private String nombre;
 
     @ManyToMany(
