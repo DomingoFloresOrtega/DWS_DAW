@@ -11,7 +11,7 @@ import { Categoria } from './categoria';
 })
 export class CategoriaService {
 
-  private apiURL = "http://localhost:8080/api/............¿?";
+  private apiURL = "http://localhost:8080/api/v1/categorias";
 
   httpOptions = {
     headers: new HttpHeaders({

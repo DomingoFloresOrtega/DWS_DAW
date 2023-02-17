@@ -16,7 +16,7 @@
   <div *ngFor="let categoria of categorias" class="row top5 align-items-center">
     <div class="col-md-3">{{ categoria.id }}</div>
     <div class="col-md-3">{{ categoria.nombre }}</div>
-    <div class="col-md-3">{{ categoria.ultimaActualizacion | date: 'dd/MM/yyyy HH:mm:ss'}}</div>
+    <div class="col-md-3">{{ categoria.ultimaActualizacion }}</div>
 
     <div class="col-md-3 d-md-flex justify-content-md-center">
       <button type="button" [routerLink]="['/categoria/', 'edit', categoria.id  ]" class="btn btn-secondary" style="margin-left: 2px; margin-top: 2px;">Editar</button>
