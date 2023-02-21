@@ -35,5 +35,9 @@ public class Categoria {
     @JsonFormat(pattern = "yyyy-MM-dd-HH:mm:ss",  shape = JsonFormat.Shape.STRING)
     private Date ultimaActualizacion;
 
+    public int conteoPeliculasCategoria(){
+        return this.peliculas.size();
+    }
+
 
 }
