@@ -9,13 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
-    @Query(value = "select * from pelicula where nombre like %:buscar% order by :ordenar", nativeQuery = true)
+    @Query(value = "select * from categoria where nombre like %:buscar% order by nombre :ordenar", nativeQuery = true)
     public List<Categoria> queryBuscarOrdenar(@Param("buscar") Optional<String> buscar, @Param("ordenar") Optional<String> ordenar);
 
-    @Query(value = "select * from pelicula where nombre like %:buscar%", nativeQuery = true)
+    @Query(value = "select * from categoria where nombre like %:buscar%", nativeQuery = true)
     public List<Categoria> queryBuscar(@Param("buscar") Optional<String> buscar);
 
-    @Query(value = "select * from pelicula where nombre order by :ordenar", nativeQuery = true)
-    public List<Categoria> queryOrdenar(@Param("ordenar") Optional<String> ordenar);
+    @Query(value = "select * from categoria order by nombre ASC", nativeQuery = true)
+    public List<Categoria> queryOrdenarAsc(@Param("ordenar") Optional<String> ordenar);
+    @Query(value = "select * from categoria order by nombre DESC", nativeQuery = true)
+    public List<Categoria> queryOrdenarDesc(@Param("ordenar") Optional<String> ordenar);
+    @Query(value = "select count(*) from categoria", nativeQuery = true)
+    public List<Categoria> queryCount();
 
 }

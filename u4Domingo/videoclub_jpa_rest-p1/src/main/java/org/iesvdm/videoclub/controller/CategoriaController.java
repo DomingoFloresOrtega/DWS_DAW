@@ -29,8 +29,6 @@ public class CategoriaController {
     @GetMapping(value={"","/"})
     public List<Categoria> all(@RequestParam("buscar") Optional<String> buscarOptional,
                                @RequestParam("ordenar") Optional<String> ordenarOptional) {
-            buscarOptional.orElse("VOID"),
-            ordenarOptional.orElse("VOID"));
         return this.categoriaService.allByQueryFiltersStream(buscarOptional, ordenarOptional);
     }
 
@@ -48,7 +46,6 @@ public class CategoriaController {
     public Categoria replaceCategoria(@PathVariable("id") Long id, @RequestBody Categoria categoria) {
         return this.categoriaService.replace(id, categoria);
     }
-
 
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)

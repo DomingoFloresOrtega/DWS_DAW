@@ -13,6 +13,7 @@ import java.util.Optional;
 public class CategoriaService {
 
     private final CategoriaRepository categoriaRepository;
+    private Categoria categoria;
 
     public CategoriaService(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
@@ -49,12 +50,20 @@ public class CategoriaService {
         if (buscarOptional.isPresent() && ordenarOptional.isPresent()) {
             return this.categoriaRepository.queryBuscarOrdenar(buscarOptional, ordenarOptional);
         } else if (!buscarOptional.isPresent() && ordenarOptional.isPresent()) {
-            return this.categoriaRepository.queryOrdenar(ordenarOptional);
+            if (ordenarOptional.get().equalsIgnoreCase("asc")) {
+                return this.categoriaRepository.queryOrdenarAsc(ordenarOptional);
+            } else if(ordenarOptional.get().equalsIgnoreCase("desc")){
+                return this.categoriaRepository.queryOrdenarDesc(ordenarOptional);
+            }
         } else if (buscarOptional.isPresent() && !ordenarOptional.isPresent()) {
             return this.categoriaRepository.queryBuscar(buscarOptional);
         }
 
         return this.categoriaRepository.findAll();
+    }
+
+    public List<Categoria> contar(){
+        return this.categoriaRepository.queryCount();
     }
 
 }
