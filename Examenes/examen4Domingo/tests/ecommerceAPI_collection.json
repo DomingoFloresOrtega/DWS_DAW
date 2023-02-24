@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "1caf587b-069c-439b-8320-2b57aad719f8",
+		"name": "ecommerce API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 2,\n        \"name\": \"Hacha\",\n        \"descrip\": \"Hacha\",\n        \"image_url\": \"fddfgdfg\",\n        \"sku\": \"sdfsdf\",\n        \"price\": 20.00,\n        \"quantity\": 3,\n        \"category_id\": {\n            \"id\": 1,\n            \"name\": \"Herramientas\",\n            \"descrip\": null\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"name\": \"Hacha\",\n    \"descrip\": \"Hacha de talar\",\n    \"image_url\": \"fddfgdfg\",\n    \"sku\": \"sdfsdf\",\n    \"price\": 25.00,\n    \"quantity\": 5,\n    \"category_id\": {\n        \"id\": 1,\n        \"name\": \"Herramientas\",\n        \"descrip\": null\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/productos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"productos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/productos/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"productos",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": 2,\n        \"product\": {\n            \"id\": 1,\n            \"name\": \"Sierra\",\n            \"descrip\": \"Sierra\",\n            \"image_url\": null,\n            \"sku\": \"sdfsdf\",\n            \"price\": 10.00,\n            \"quantity\": 2,\n            \"category_id\": {\n                \"id\": 1,\n                \"name\": \"Herramientas\",\n                \"descrip\": null\n            },\n            \"hibernateLazyInitializer\": {}\n        },\n        \"quantity\": 1,\n        \"created_date\": null,\n        \"modified_date\": null,\n        \"user\": {\n            \"id\": 2,\n            \"email\": \"example@example.com\",\n            \"username\": \"1234\",\n            \"password\": \"1234\",\n            \"birthdate\": null\n        }\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/productos/buy",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"productos",
+						"buy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "carro",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/productos/cart?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"productos",
+						"cart"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
