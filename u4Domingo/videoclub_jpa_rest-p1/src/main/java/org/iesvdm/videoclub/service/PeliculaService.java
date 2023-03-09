@@ -1,11 +1,18 @@
 package org.iesvdm.videoclub.service;
 
+import org.iesvdm.videoclub.domain.Categoria;
 import org.iesvdm.videoclub.domain.Pelicula;
 import org.iesvdm.videoclub.exception.PeliculaNotFoundException;
 import org.iesvdm.videoclub.repository.PeliculaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PeliculaService {
@@ -18,6 +25,22 @@ public class PeliculaService {
 
     public List<Pelicula> all() {
         return this.peliculaRepository.findAll();
+    }
+
+    public Map<String, Object> all(int pagina, int tamanio){
+
+        Pageable paginado = PageRequest.of(pagina, tamanio, Sort.by("idPelicula").ascending());
+
+        Page<Pelicula> pageAll = this.peliculaRepository.findAll(paginado);
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("peliculas", pageAll.getContent());
+        response.put("currentPage", pageAll.getNumber());
+        response.put("totalItems", pageAll.getTotalElements());
+        response.put("totalPages", pageAll.getTotalPages());
+
+        return response;
     }
 
     public Pelicula save(Pelicula pelicula) {

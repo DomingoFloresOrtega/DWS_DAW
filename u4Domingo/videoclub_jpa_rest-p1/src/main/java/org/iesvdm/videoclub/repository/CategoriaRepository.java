@@ -19,7 +19,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
     public List<Categoria> queryOrdenarAsc(@Param("ordenar") Optional<String> ordenar);
     @Query(value = "select * from categoria order by nombre DESC", nativeQuery = true)
     public List<Categoria> queryOrdenarDesc(@Param("ordenar") Optional<String> ordenar);
-    @Query(value = "select count(*) from categoria", nativeQuery = true)
-    public List<Categoria> queryCount();
+    @Query(value = "select count(id_pelicula) as 'conteo' from categoria c left join pelicula_categoria pc on c.id_categoria = pc.id_categoria group by c.id_categoria", nativeQuery = true)
+    public List<Object[]> queryCount();
 
 }

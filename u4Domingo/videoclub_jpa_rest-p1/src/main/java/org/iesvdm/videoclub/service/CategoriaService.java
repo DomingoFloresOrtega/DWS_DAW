@@ -4,10 +4,18 @@ import org.iesvdm.videoclub.domain.Categoria;
 import org.iesvdm.videoclub.exception.CategoriaNotFoundException;
 import org.iesvdm.videoclub.exception.PeliculaNotFoundException;
 import org.iesvdm.videoclub.repository.CategoriaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class CategoriaService {
@@ -20,7 +28,36 @@ public class CategoriaService {
     }
 
     public List<Categoria> all() {
-        return this.categoriaRepository.findAll();
+        List<Object[]> lista = this.categoriaRepository.queryCount();
+        List<Categoria> all = this.categoriaRepository.findAll();
+
+        var l = all.stream().map(categoria1 -> {
+
+            Object obj= lista.stream().filter(objects -> {
+               Integer objetoInt = (int) objects[0];
+             return objetoInt == categoria.getIdCategoria();})
+                .map(objects -> objects[1]).findFirst().get();
+
+            Integer conteo = (int) obj;
+            categoria1.setConteo(conteo); return categoria1;}).collect(toList());
+
+        return all;
+    }
+
+    public Map<String, Object> all(int pagina, int tamanio){
+
+        Pageable paginado = PageRequest.of(pagina, tamanio, Sort.by("idCategoria").ascending());
+
+        Page<Categoria> pageAll = this.categoriaRepository.findAll(paginado);
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("categorias", pageAll.getContent());
+        response.put("currentPage", pageAll.getNumber());
+        response.put("totalItems", pageAll.getTotalElements());
+        response.put("totalPages", pageAll.getTotalPages());
+
+        return response;
     }
 
     public Categoria save(Categoria categoria) {
@@ -60,10 +97,6 @@ public class CategoriaService {
         }
 
         return this.categoriaRepository.findAll();
-    }
-
-    public List<Categoria> contar(){
-        return this.categoriaRepository.queryCount();
     }
 
 }
