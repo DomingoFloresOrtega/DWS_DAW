@@ -10,10 +10,10 @@
 <body>
 	<div class="container">
 		<div class="row mt-4">
-			<div class="col col-md-12">
+			<div class="col-md-8">
 				<h1>Comercial</h1>
 			</div>
-			<div class="col col-md-12">
+			<div class="col-md-8">
 				<form action="/comercial/crear">
 					<input type="submit" class="btn btn-success" value="Crear">
 				</form>
@@ -21,22 +21,22 @@
 		</div>
 		<hr/>
 		<div class="row">
-			<div class="col col-md-2" th:text=#{id}></div>
-			<div class="col col-md-2" th:text=#{nombre}></div>
-			<div class="col col-md-2" th:text=#{ape1}></div>
-			<div class="col col-md-2" th:text=#{ape2}></div>
-			<div class="col col-md-2" th:text=#{comision}></div>
-			<div class="col col-md-2" th:text=#{accion}></div>
+			<div class="col-md-2" th:text=#{id}></div>
+			<div class="col-md-2" th:text=#{nombre}></div>
+			<div class="col-md-2" th:text=#{ape1}></div>
+			<div class="col-md-2" th:text=#{ape2}></div>
+			<div class="col-md-2" th:text=#{comision}></div>
+			<div class="col-md-2" th:text=#{accion}></div>
 		</div>
 		<hr/>
 
 		<div th:each="comercial : ${listaComerciales}" class="row">
-			<div class="col col-md-2" th:text="${comercial.id}">0</div>
-			<div class="col col-md-2" th:text="${comercial.nombre}">Nombre</div>
-			<div class="col col-md-2" th:text="${comercial.apellido1}">Apellido1</div>
-			<div class="col col-md-2" th:text="${comercial.apellido2 ?: '&nbsp;'}">Apellido2</div>
-			<div class="col col-md-2" th:text="${comercial.comision}">Comisión</div>
-			<div class="col col-md-2">
+			<div class="col-md-2" th:text="${comercial.id}">0</div>
+			<div class="col-md-2" th:text="${comercial.nombre}">Nombre</div>
+			<div class="col-md-2" th:text="${comercial.apellido1}">Apellido1</div>
+			<div class="col-md-2" th:text="${comercial.apellido2 ?: '&nbsp;'}">Apellido2</div>
+			<div class="col-md-2" th:text="${comercial.comision}">Comisión</div>
+			<div class="col-md-2">
 				<form th:action="@{/comercial/__${comercial.id}__}" class="float-start">
     				<input type="submit" value="Ver Detalle" />
 				</form>

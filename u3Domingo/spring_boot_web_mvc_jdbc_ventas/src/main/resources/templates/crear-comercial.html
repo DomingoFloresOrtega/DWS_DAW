@@ -17,11 +17,11 @@
 
 	<div class="container">
 		<div class="row mt-4">
-			<div class="col col-md-12">
+			<div class="col-md-6">
 				<h1 th:text=#{newcom}></h1>
 			</div>
 			
-			<div class="col col-md-12">
+			<div class="col-md-6">
 				<form action="/comercial" >
 					<input type="submit" class="btn btn-success" value="Volver" />
 				</form>
@@ -32,7 +32,7 @@
 		
 		<div class="row">
 			<form th:action="@{/comercial/crear}" th:object="${comercial}" th:method="post">
-				<div class="col col-md-2 d-flex flex-row">
+				<div class="col-md-2 d-flex flex-row">
 					<div th:text=#{nombre}>
 					</div>
 					<div class="ms-3">
@@ -42,7 +42,7 @@
     			     	</ul>
 					</div> 
 				</div>
-				<div class="col col-md-2 d-flex flex-row">
+				<div class="col-md-2 d-flex flex-row">
 					<div th:text=#{ape1}>
 					</div>
 					<div class="ms-3">
@@ -53,7 +53,7 @@
 					</div> 
 				</div>
 				
-				<div class="col col-md-2 d-flex flex-start">
+				<div class="col-md-2 d-flex flex-start">
 					<div th:text=#{ape2}>
 					</div>
 					<div class="ms-3">
@@ -64,7 +64,7 @@
 					</div> 
 				</div>
 				
-				<div class="col col-md-2 d-flex flex-start">
+				<div class="col-md-2 d-flex flex-start">
 					<div th:text=#{comision}>
 					</div>
 					<div class="ms-3">
